@@ -1,0 +1,8 @@
+{
+    "tokenName": "Wrapped Ether",
+    "tokenSymbol": "WETH",
+    "contractAddress": "0x4200000000000000000000000000000000000006",
+    "baseLiquidity": 20038.111150000004,
+    "quoteLiquidity": 44973094.7115,
+    "usdLiquidity": 98659654.61000003
+}
