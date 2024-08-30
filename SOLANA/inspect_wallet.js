@@ -65,7 +65,7 @@ async function getWalletInfo() {
         console.log(chalk.cyan.bold('\nRecent Transactions:'));
         const confirmedSignatures = await connection.getConfirmedSignaturesForAddress2(
             walletPublicKey, 
-            { limit: 10 }
+            { limit: 5 }
         );
 
         for (let signature of confirmedSignatures) {
