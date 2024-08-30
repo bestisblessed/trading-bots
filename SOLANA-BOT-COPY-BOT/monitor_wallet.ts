@@ -101,7 +101,7 @@ async function getTokenBalances(walletAddress: string) {
       fs.writeFileSync(updatesPath, JSON.stringify(updatedTokens, null, 2));
       console.log(`Updated tokens saved to ${updatesPath}`);
     } else {
-      console.log("No tokens added or removed, not creating updated_tokens.json");
+//      console.log("No tokens added or removed, not creating updated_tokens.json");
     }
 
     // Write the current token data to the balances file
