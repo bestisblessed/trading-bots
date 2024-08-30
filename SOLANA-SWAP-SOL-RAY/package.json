@@ -1,0 +1,23 @@
+{
+  "name": "solana-new",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@raydium-io/raydium-sdk-v2": "^0.1.65-alpha",
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.95.3",
+    "axios": "^1.7.5",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/bs58": "^4.0.4"
+  }
+}
