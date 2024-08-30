@@ -1,0 +1,20 @@
+[
+  {
+    "index": 1,
+    "mint": "So11111111111111111111111111111111111111112",
+    "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "2306157828",
+    "decimals": 9,
+    "uiAmountString": "2.306157828"
+  },
+  {
+    "index": 2,
+    "mint": "4qkLHhLqrzeJCkC61XF82F4FieUzrqX6nzzEWG7rjPNC",
+    "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "3695266339",
+    "decimals": 6,
+    "uiAmountString": "3695.266339"
+  }
+]

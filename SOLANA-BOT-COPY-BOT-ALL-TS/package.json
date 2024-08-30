@@ -1,0 +1,21 @@
+{
+  "name": "solana-bot-copy-bot",
+  "version": "1.0.0",
+  "main": "inspect_wallet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@raydium-io/raydium-sdk-v2": "^0.1.67-alpha",
+    "@solana/spl-token": "^0.4.8",
+    "axios": "^1.7.5",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.9.36"
+  }
+}
