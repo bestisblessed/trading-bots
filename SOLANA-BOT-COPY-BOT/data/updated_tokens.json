@@ -1,0 +1,14 @@
+{
+  "added": [
+    {
+      "index": 3,
+      "mint": "Z6akXpS92DH5FWFHVU6YYGLJd2XaPo1vZdyF6JDpump",
+      "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+      "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "amount": "0",
+      "decimals": 6,
+      "uiAmountString": "0"
+    }
+  ],
+  "removed": []
+}

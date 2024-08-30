@@ -1,0 +1,29 @@
+[
+  {
+    "index": 1,
+    "mint": "So11111111111111111111111111111111111111112",
+    "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "2297189247",
+    "decimals": 9,
+    "uiAmountString": "2.297189247"
+  },
+  {
+    "index": 2,
+    "mint": "4qkLHhLqrzeJCkC61XF82F4FieUzrqX6nzzEWG7rjPNC",
+    "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "3695266339",
+    "decimals": 6,
+    "uiAmountString": "3695.266339"
+  },
+  {
+    "index": 3,
+    "mint": "Z6akXpS92DH5FWFHVU6YYGLJd2XaPo1vZdyF6JDpump",
+    "owner": "6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "0",
+    "decimals": 6,
+    "uiAmountString": "0"
+  }
+]
