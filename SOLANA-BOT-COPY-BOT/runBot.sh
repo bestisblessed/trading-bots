@@ -10,8 +10,8 @@
 #ts-node check_wallet.ts 6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6
 npx ts-node monitor_wallet.ts 6ZDdVLFc2CRaPUwUGnfUsmXr32EBWoNaM9Axf5LWUjc6
 
-Check if updated_tokens.json exists in the data directory
-Add logic for buying or selling
+# Check if updated_tokens.json exists in the data directory
+# Add logic for buying or selling
 if [ -f "./data/updated_tokens.json" ]; then
     echo "updated_tokens.json exists, running follow-up script..."
     python swap.py

@@ -56,6 +56,7 @@
 
 //     // Define the path for the output file
 //     const outputPath = path.join(dataDir, `${walletAddress}_token_balances.json`);
+//     const updatesPath = path.join(dataDir, `updated_tokens.json`);
 
 //     // Check if the previous file exists
 //     let previousData: TokenData[] = [];
@@ -71,28 +72,37 @@
 //     const addedTokens = tokensData.filter(token => !previousMints.has(token.mint));
 //     const removedTokens = previousData.filter(token => !currentMints.has(token.mint));
 
-//     if (addedTokens.length > 0) {
-//       console.log('NEW TOKENS ADDED:');
-//       addedTokens.forEach(token => {
-//         console.log(`  Mint: ${token.mint}`);
-//         console.log(`  Amount: ${token.amount}`);
-//         console.log("");
-//       });
-//     }
+//     if (addedTokens.length > 0 || removedTokens.length > 0) {
+//       const updatedTokens = {
+//         added: addedTokens,
+//         removed: removedTokens,
+//       };
 
-//     if (removedTokens.length > 0) {
-//       console.log('TOKENS REMOVED:');
-//       removedTokens.forEach(token => {
-//         console.log(`  Mint: ${token.mint}`);
-//         console.log(`  Amount: ${token.amount}`);
-//         console.log("");
-//       });
+//       if (addedTokens.length > 0) {
+//         console.log('\nNEW TOKENS ADDED:');
+//         addedTokens.forEach(token => {
+//           console.log(`  Mint: ${token.mint}`);
+//           console.log(`  Amount: ${token.amount}`);
+//           console.log("");
+//         });
+//       }
+
+//       if (removedTokens.length > 0) {
+//         console.log('\nTOKENS REMOVED:');
+//         removedTokens.forEach(token => {
+//           console.log(`  Mint: ${token.mint}`);
+//           console.log(`  Amount: ${token.amount}`);
+//           console.log("");
+//         });
+//       }
+
+//       // Save the updated tokens to a separate JSON file
+//       fs.writeFileSync(updatesPath, JSON.stringify(updatedTokens, null, 2));
+//       console.log(`Updated tokens saved to ${updatesPath}`);
 //     }
 
 //     // Write the token data to a JSON file
 //     fs.writeFileSync(outputPath, JSON.stringify(tokensData, null, 2));
-
-//     // console.log(`Token data saved to ./data/`);
 
 //   } catch (error) {
 //     console.error("Failed to fetch token balances:", error);
@@ -107,8 +117,6 @@
 // }
 
 // getTokenBalances(walletAddress);
-
-
 import { Connection, PublicKey } from "@solana/web3.js";
 import * as fs from 'fs';
 import * as path from 'path';
@@ -180,39 +188,29 @@ async function getTokenBalances(walletAddress: string) {
     const previousMints = new Set(previousData.map(token => token.mint));
     const currentMints = new Set(tokensData.map(token => token.mint));
 
-    const addedTokens = tokensData.filter(token => !previousMints.has(token.mint));
     const removedTokens = previousData.filter(token => !currentMints.has(token.mint));
 
-    if (addedTokens.length > 0 || removedTokens.length > 0) {
+    // Create updated_tokens.json only if there are removed tokens
+    if (removedTokens.length > 0) {
+      console.log('\nTOKENS REMOVED:');
+      removedTokens.forEach(token => {
+        console.log(`  Mint: ${token.mint}`);
+        console.log(`  Amount: ${token.amount}`);
+        console.log("");
+      });
+
       const updatedTokens = {
-        added: addedTokens,
         removed: removedTokens,
       };
-
-      if (addedTokens.length > 0) {
-        console.log('\nNEW TOKENS ADDED:');
-        addedTokens.forEach(token => {
-          console.log(`  Mint: ${token.mint}`);
-          console.log(`  Amount: ${token.amount}`);
-          console.log("");
-        });
-      }
-
-      if (removedTokens.length > 0) {
-        console.log('\nTOKENS REMOVED:');
-        removedTokens.forEach(token => {
-          console.log(`  Mint: ${token.mint}`);
-          console.log(`  Amount: ${token.amount}`);
-          console.log("");
-        });
-      }
 
       // Save the updated tokens to a separate JSON file
       fs.writeFileSync(updatesPath, JSON.stringify(updatedTokens, null, 2));
       console.log(`Updated tokens saved to ${updatesPath}`);
+    } else {
+      console.log("No tokens removed, not creating updated_tokens.json");
     }
 
-    // Write the token data to a JSON file
+    // Write the current token data to the balances file
     fs.writeFileSync(outputPath, JSON.stringify(tokensData, null, 2));
 
   } catch (error) {
