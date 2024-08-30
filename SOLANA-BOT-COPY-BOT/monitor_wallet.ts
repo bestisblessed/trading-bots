@@ -29,11 +29,33 @@ async function getTokenBalances(walletAddress: string) {
 
     const tokensData: TokenData[] = [];
     
-    // Iterate through token accounts and collect details
+    // // Iterate through token accounts and collect details
+    // tokenAccounts.value.forEach((tokenAccount, index) => {
+    //   const accountInfo = tokenAccount.account.data.parsed.info;
+    //   const tokenAmount = accountInfo.tokenAmount;
+
+    //   const tokenData: TokenData = {
+    //     index: index + 1,
+    //     mint: accountInfo.mint,
+    //     owner: accountInfo.owner,
+    //     programId: tokenAccount.account.owner.toString(),
+    //     amount: tokenAmount.amount,
+    //     decimals: tokenAmount.decimals,
+    //     uiAmountString: tokenAmount.uiAmountString,
+    //   };
+    
+    //   // Push the token data to the array
+    //   tokensData.push(tokenData);
+    // });
     tokenAccounts.value.forEach((tokenAccount, index) => {
       const accountInfo = tokenAccount.account.data.parsed.info;
       const tokenAmount = accountInfo.tokenAmount;
-
+    
+      // Skip tokens with a zero balance
+      if (tokenAmount.amount === "0") {
+        return;
+      }
+    
       const tokenData: TokenData = {
         index: index + 1,
         mint: accountInfo.mint,
@@ -47,6 +69,7 @@ async function getTokenBalances(walletAddress: string) {
       // Push the token data to the array
       tokensData.push(tokenData);
     });
+    
 
     // Ensure the data/ directory exists
     const dataDir = path.join(__dirname, 'data');
