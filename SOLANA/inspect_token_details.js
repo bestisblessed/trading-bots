@@ -7,9 +7,14 @@ const path = require('path');
 process.noDeprecation = true;
 
 const walletAddress = process.argv[2]; // Get the wallet address from the command line arguments
-const filePath = path.join(__dirname, 'data', `tokens_${walletAddress}.txt`);
-const data = fs.readFileSync(filePath, 'utf8');
-const mintAddresses = data.split('\n').filter(line => line.trim() !== '' && line.trim() !== 'So11111111111111111111111111111111111111112'); // Remove SOL address
+// const walletAddress = 'BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC';
+
+// const filePath = path.join(__dirname, 'data', `tokens_${walletAddress}.txt`);
+// const data = fs.readFileSync(filePath, 'utf8');
+// const mintAddresses = data.split('\n').filter(line => line.trim() !== '' && line.trim() !== 'So11111111111111111111111111111111111111112'); // Remove SOL address
+const jsonFilePath = path.join(__dirname, 'data', `${walletAddress}_balance.json`);
+const jsonData = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+const mintAddresses = jsonData.tokens.map(token => token.mint).filter(mint => mint !== 'So11111111111111111111111111111111111111112');
 
 // Dexscreener API endpoint
 const dexscreenerApiUrl = 'https://api.dexscreener.com/latest/dex/search?q=';
@@ -66,14 +71,14 @@ async function getDexscreenerData(mintAddress) {
 //     }
 // }
 async function inspectLiquidity() {
-    console.log(chalk.white.bold('\n\n\nInspecting Tokens & Pairs:\n'));
+    console.log(chalk.white.bold('\n\nInspecting Tokens & Pairs in Wallet:\n'));
     console.log(chalk.grey('---------------------------------------------'));
 
     for (let mint of mintAddresses) {
         const dexData = await getDexscreenerData(mint);
 
         if (dexData && dexData.pairs && dexData.pairs.length > 0) {
-            console.log(chalk.yellow.bold(`Found pairs for Mint Address: ${mint}\n`));
+            console.log(chalk.cyan.bold(`\nFound pairs for Mint Address: ${mint}\n`));
 
             dexData.pairs.forEach(pair => {
                 // Extract pair data safely with checks for undefined fields
@@ -81,14 +86,15 @@ async function inspectLiquidity() {
                 const volume24h = pair.volume && pair.volume.h24 ? pair.volume.h24 : 'N/A';
                 const priceUsd = pair.priceUsd ? pair.priceUsd : 'N/A';
 
-                console.log(chalk.cyan(`Pair Address: ${pair.pairAddress}`));
                 console.log(chalk.green(`  Name:`) + chalk.magenta(` ${pair.baseToken.name}`));
                 console.log(chalk.green(`  Token:`) + chalk.magenta(` ${pair.baseToken.symbol}`));
+                console.log(chalk.green(`  Pair Address: ${pair.pairAddress}`));
                 console.log(chalk.green(`  Pair:`) + chalk.magenta(` ${pair.baseToken.symbol}/${pair.quoteToken.symbol}`));
                 console.log(chalk.green(`  DEX:`) + chalk.magenta(` ${pair.dexId}`));
                 console.log(chalk.green(`  Liquidity:`) + chalk.magenta(` $${liquidityUsd}`));
                 console.log(chalk.green(`  Volume (24h):`) + chalk.magenta(` $${volume24h}`));
                 console.log(chalk.green(`  Price:`) + chalk.magenta(` $${priceUsd}`));
+                console.log("")
             });
         } else {
             console.log(chalk.red.italic(`No trading pairs found for Mint Address: ${mint}`));
