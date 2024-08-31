@@ -1,8 +1,3 @@
-# // if "added"
-#     // buy token
-# // else (removed)
-#     // sell token
-
 import json
 import os
 import requests, base64
@@ -15,6 +10,7 @@ from solders import message
 from solana.rpc.types import TxOpts
 from dotenv import load_dotenv
 from moralis import sol_api
+import time
 
 load_dotenv()
 private_key = os.getenv('WALLET_PRIVATE_KEY')
@@ -43,13 +39,10 @@ if os.path.exists(updates_path):
                     'inputMint': 'So11111111111111111111111111111111111111112',
                     'outputMint': mint_address,
                     'amount': str(int(0.005 * 10**9)),  # Buy 0.005 eth of token
-                    'slippageBps': '100'  # 1% slippage
+                    'slippageBps': '200'  # 1% slippage
                 }
                 response = requests.get(url, params=params)
                 quoteResponse = response.json()
-                # print(quoteResponse)
-
-                #swap
                 url = 'https://quote-api.jup.ag/v6/swap'
                 payload = {
                     'userPublicKey': str(sender.pubkey()),
@@ -57,8 +50,8 @@ if os.path.exists(updates_path):
                 }
                 response = requests.post(url, json=payload)
                 data = response.json()
+                time.sleep(2)  # Small delay after fetching swap data
                 swapTransaction = data['swapTransaction']
-                # print(swapTransaction)
                 raw_transaction = VersionedTransaction.from_bytes(base64.b64decode(swapTransaction))
                 signature = sender.sign_message(message.to_bytes_versioned(raw_transaction.message))
                 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature])
@@ -66,8 +59,7 @@ if os.path.exists(updates_path):
                 result = client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
                 transaction_id = json.loads(result.to_json())['result']
                 print('Transaction ID: ', transaction_id)
-
-
+                time.sleep(3)  # General delay between token processing
 
             elif action == 'removed':
                 print(f"Selling token with mint: {mint_address}")
@@ -90,21 +82,16 @@ if os.path.exists(updates_path):
                         sell_amount = float(balance) * 0.9  # Calculate 90% of the balance
                         print(f"Selling {sell_amount} of token {portfolio_token['name']} ({portfolio_token['symbol']})")
                         sell_amount_raw = int(sell_amount * 10**decimals)
-                        # print(f"Token {portfolio_token['name']} ({portfolio_token['symbol']}) balance: {balance}")
-
-                        # Selling the token
                         url = 'https://quote-api.jup.ag/v6/quote'
                         params = {
                             'inputMint': mint_address,
                             'outputMint': 'So11111111111111111111111111111111111111112',  # Converting to SOL
-                            # 'amount': str(int(float(balance) * 10**int(portfolio_token['decimals']))),  # Sell all tokens
                             'amount': sell_amount_raw,  # Sell all tokens
-                            'slippageBps': '100'  # 1% slippage
+                            'slippageBps': '200'  # 1% slippage
                         }
                         response = requests.get(url, params=params)
                         quoteResponse = response.json()
-
-                        # Swap
+                        time.sleep(2)  # Small delay after fetching quote data
                         url = 'https://quote-api.jup.ag/v6/swap'
                         payload = {
                             'userPublicKey': str(sender.pubkey()),
@@ -120,10 +107,11 @@ if os.path.exists(updates_path):
                         result = client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
                         transaction_id = json.loads(result.to_json())['result']
                         print('Transaction ID: ', transaction_id)
+                        time.sleep(3)  # General delay between token processing
                         break
-
 
     os.remove(updates_path)
     print('Processed and removed updated_tokens.json.')
 else:
     print('No updated tokens found. Exiting...')
+
