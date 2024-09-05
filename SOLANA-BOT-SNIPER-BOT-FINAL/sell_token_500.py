@@ -11,19 +11,37 @@ from solana.rpc.types import TxOpts
 from dotenv import load_dotenv
 import time
 import sys
-from dotenv import load_dotenv
 from moralis import sol_api
 
+# Load environment variables from the .env file
 load_dotenv()
+
+# Get the private key and wallet address from the .env file
 private_key = os.getenv('MY_BOT_WALLET_PRIVATE_KEY')
+wallet_address = os.getenv('MY_BOT_WALLET_ADDRESS')
 
+# Check if both private key and wallet address were loaded correctly
 if not private_key:
-    raise ValueError("WALLET_PRIVATE_KEY not found in the .env file")
+    raise ValueError("MY_BOT_WALLET_PRIVATE_KEY not found in the .env file")
+if not wallet_address:
+    raise ValueError("MY_BOT_WALLET_ADDRESS not found in the .env file")
 
+# Initialize the Solana client
 client = Client("https://api.mainnet-beta.solana.com")
+
+# Create the Keypair object from the private key
 sender = Keypair.from_base58_string(private_key)
 
-wallet_address = '7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE'
+# load_dotenv()
+# private_key = os.getenv('MY_BOT_WALLET_PRIVATE_KEY')
+
+# if not private_key:
+#     raise ValueError("WALLET_PRIVATE_KEY not found in the .env file")
+
+# client = Client("https://api.mainnet-beta.solana.com")
+# sender = Keypair.from_base58_string(private_key)
+
+# wallet_address = '7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE'
 file_path = f'./data/{wallet_address}_token_balances.json'
 
 with open(file_path, 'r') as f:
@@ -59,7 +77,7 @@ params = {
     'inputMint': mint_address,
     'outputMint': 'So11111111111111111111111111111111111111112',  # Converting to SOL
     'amount': sell_amount_raw,  # Sell all tokens
-    'slippageBps': '200'  # 1% slippage
+    'slippageBps': '250'  # 1% slippage
 }
 response = requests.get(url, params=params)
 quoteResponse = response.json()

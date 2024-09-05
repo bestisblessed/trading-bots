@@ -12,14 +12,34 @@ init(autoreset=True)
 # Load environment variables from the .env file
 load_dotenv()
 
-# Get the API key from the environment variables
+# Get the API key and wallet address from the environment variables
 api_key = os.getenv("MORALIS_API_KEY")
+wallet_address = os.getenv("MY_BOT_WALLET_ADDRESS")
+
+# Check if the wallet address was loaded correctly
+if not wallet_address:
+    print(Fore.RED + "Error: MY_BOT_WALLET_ADDRESS is not set in the .env file")
+    exit(1)
 
 # Define the parameters with the Solana wallet address and network
 params = {
-    "address": "7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE",
+    "address": wallet_address,  # Get wallet address from .env
     "network": "mainnet",
 }
+# # Initialize colorama
+# init(autoreset=True)
+
+# # Load environment variables from the .env file
+# load_dotenv()
+
+# # Get the API key from the environment variables
+# api_key = os.getenv("MORALIS_API_KEY")
+
+# # Define the parameters with the Solana wallet address and network
+# params = {
+#     "address": "7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE",
+#     "network": "mainnet",
+# }
 
 # Fetch the portfolio balance
 result = sol_api.account.get_portfolio(api_key=api_key, params=params)

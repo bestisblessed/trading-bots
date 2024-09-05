@@ -12,13 +12,21 @@ init(autoreset=True)
 # Load environment variables from the .env file
 load_dotenv()
 
+# Get the wallet address from the environment variables
+wallet_address = os.getenv("MY_BOT_WALLET_ADDRESS")
+
+# Check if the wallet address was loaded correctly
+if not wallet_address:
+    print(Fore.RED + "Error: MY_BOT_WALLET_ADDRESS is not set in the .env file")
+    exit(1)
+
 # Ensure the data/ directory exists
 data_dir = 'data'
 if not os.path.exists(data_dir):
     os.makedirs(data_dir)
 
 # Define the path for the output file (token balances JSON)
-wallet_address = "7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE"  # Example wallet address
+# wallet_address = "7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE"  # Example wallet address
 output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
 buy_prices_path = os.path.join(data_dir, 'buy_prices.json')  # Path to your buy prices JSON
 sold_tokens_path = os.path.join(data_dir, 'sold_tokens.json')  # Path to track sold tokens
@@ -33,7 +41,7 @@ if os.path.exists(sold_tokens_path):
 else:
     sold_tokens = {}
 
-print(" ")
+# print(" ")
 
 def get_solana_token_data(token_address, buy_price_usd):
     if token_address.startswith("So1"):
@@ -118,7 +126,7 @@ if os.path.exists(output_path):
                 # Check if we have the buy price for the token
                 if token_address and token_address in buy_prices:
                     buy_price_usd = float(buy_prices[token_address].get('price_usd', '0'))
-                    print(Fore.CYAN + f"Fetching data for token mint address: {token_address}")
+                    # print(Fore.CYAN + f"Fetching data for token mint address: {token_address}")
                     get_solana_token_data(token_address, buy_price_usd)
                 else:
                     print(Fore.RED + f"No buy price found for token address: {token_address}")

@@ -90,7 +90,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
                 console.error(`Swap stderr: ${stderr}`);
                 return;
             }
-            console.log(`Swap stdout: ${stdout}`);
+            console.log(`Done buy_token.py: ${stdout}`);
         });
 
         // Delay before executing the Python scripts
@@ -140,7 +140,8 @@ function runPythonPriceChecker() {
                 return;
             }
             // console.log(`Checking %'s gained..`);
-            console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
+            // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
+            console.log(`${stdout}`);
             // console.log('Done check_wallet_and_sell.py')
         });
     }
