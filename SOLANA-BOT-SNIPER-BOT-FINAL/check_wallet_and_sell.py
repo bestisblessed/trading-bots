@@ -90,7 +90,7 @@
 #                 elif price_increase_percentage >= 50:
 #                     print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 50% increase: {token_address}.")
 #                     # Run the sell_token.py script
-#                     subprocess.run(['python', 'sell_token_100.py', token_address])
+#                     subprocess.run(['python', 'sell_token_75.py', token_address])
 #                     sold_tokens[token_address] = {'sell_percentage': 50, 'timestamp': timestamp}  # Add to sold tokens
 #                     save_sold_tokens()  # Save the file here after 500% sale
 
@@ -274,26 +274,26 @@ def get_solana_token_data(token_address, buy_price_usd):
                     print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 500% increase: {token_address}")
                     subprocess.run(['python', 'sell_token_500.py', token_address])
                     sold_tokens[token_address] = {
-                        'sell_100_percent': sold_tokens.get(token_address, {}).get('sell_100_percent', False),
+                        'sell_75_percent': sold_tokens.get(token_address, {}).get('sell_75_percent', False),
                         'sell_500_percent': True, 'timestamp': timestamp
                     }
                     save_sold_tokens()  # Save the file after the 500% sale
                     return
 
-                # Check if the token has already been sold for a 100% increase
-                if token_address in sold_tokens and sold_tokens[token_address].get('sell_100_percent', False):
-                    # print(Fore.GREEN + f"Token {token_address} has already been sold at 100% gain, skipping.")
+                # Check if the token has already been sold for a 75% increase
+                if token_address in sold_tokens and sold_tokens[token_address].get('sell_75_percent', False):
+                    # print(Fore.GREEN + f"Token {token_address} has already been sold at 75% gain, skipping.")
                     return
 
-                # Check if price has increased by 100% or more
-                elif price_increase_percentage >= 100:
-                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 100% increase: {token_address}")
-                    subprocess.run(['python', 'sell_token_100.py', token_address])
+                # Check if price has increased by 75% or more
+                elif price_increase_percentage >= 75:
+                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 75% increase: {token_address}")
+                    subprocess.run(['python', 'sell_token_75.py', token_address])
                     sold_tokens[token_address] = {
-                        'sell_100_percent': True,
+                        'sell_75_percent': True,
                         'sell_500_percent': False, 'timestamp': timestamp
                     }
-                    save_sold_tokens()  # Save the file here after 100% sale
+                    save_sold_tokens()  # Save the file here after 75% sale
 
                 else:
                     # print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")
