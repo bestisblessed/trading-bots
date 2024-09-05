@@ -1,37 +1,21 @@
 #!/bin/bash
 
-# # export $(grep -v '^#' .env | xargs)
-# # echo "Using wallet: $MY_BOT_WALLET_ADDRESS"
-
-# # python check_wallet_and_log_buy_prices.py
-# # node SCANNER.js
-
-# # v2 tmux
-# # Define the tmux session name
-# SESSION_NAME="SNIPER-BOT"
-
-# # Kill the session if it already exists
-# tmux kill-session -t $SESSION_NAME 2>/dev/null
-
-# # Create a new tmux session and run the commands
-# tmux new-session -d -s $SESSION_NAME "export \$(grep -v '^#' .env | xargs); echo 'Using wallet: \$MY_BOT_WALLET_ADDRESS'; python check_wallet_and_log_buy_prices.py; node SCANNER.js"
-# echo "tmux session $SESSION_NAME has been started."
-# tmux attach -t $SESSION_NAME
-
 # Load the environment variables from the .env file
 export $(grep -v '^#' .env | xargs)
 
 # Echo the wallet being used to verify if the env variable is loaded correctly
 echo "Using wallet: $MY_BOT_WALLET_ADDRESS"
 
-# Define the tmux session name
+# Define the screen session name
 SESSION_NAME="SNIPER-BOT"
 
 # Kill the session if it already exists
-tmux kill-session -t $SESSION_NAME 2>/dev/null
+screen -S $SESSION_NAME -X quit 2>/dev/null
 
-# Create a new tmux session and run the commands, using the already loaded environment variables
-tmux new-session -d -s $SESSION_NAME "echo 'Using wallet: $MY_BOT_WALLET_ADDRESS'; python check_wallet_and_log_buy_prices.py; node SCANNER-PUMP.js"
+# Create a new screen session and run the commands in the background
+screen -dmS $SESSION_NAME bash -c "export \$(grep -v '^#' .env | xargs); echo 'Using wallet: \$MY_BOT_WALLET_ADDRESS'; python check_wallet_and_log_buy_prices.py; node SCANNER.js; exec bash"
 
-# Notify the user that the tmux session has been started
-echo "tmux session $SESSION_NAME started"
+# Print a message indicating the session is running
+echo "Screen session $SESSION_NAME has been started and is running in the background."
+
+screen -r $SESSION_NAME
