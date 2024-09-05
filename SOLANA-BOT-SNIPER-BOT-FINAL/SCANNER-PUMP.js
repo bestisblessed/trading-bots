@@ -21,7 +21,11 @@ if (!fs.existsSync(directory)) {
 
 // Monitor logs with efficient filtering
 async function main(connection, programAddress) {
-    console.log("Monitoring logs for program:", programAddress.toString());
+    console.log();
+    console.log('-'.repeat(100));
+    // console.log("Monitoring logs for program:", programAddress.toString());
+    console.log("MONITORING LOGS");
+    console.log('-'.repeat(100));
 
     connection.onLogs(
         programAddress,
@@ -143,7 +147,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
         const tokenBAddress = tokenBAccount.toBase58();
         const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
 
-        console.log(`Final Token Account Public Key: ${token_address}`);
+        console.log(`New Token Address: ${token_address}`);
 
         if (token_address.endsWith("pump")) {
             // Save the token data to a JSON file
@@ -152,10 +156,10 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
             const dataToSave = { tokenAAddress, tokenBAddress };
         
             fs.writeFileSync(newFilePath, JSON.stringify(dataToSave, null, 2));
-            console.log(`Data saved to file: ${newFilePath}`);
+            // console.log(`Data saved to file: ${newFilePath}`);
         
             // Delay before executing the Python scripts
-            console.log("Running buy_token.py");
+            // console.log("Running buy_token.py");
             await new Promise(resolve => setTimeout(resolve, 3000)); // 3 seconds delay
         
             // Call the Python swap script with the new token_address
@@ -169,11 +173,12 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
                     console.error(`Swap stderr: ${stderr}`);
                     return;
                 }
-                console.log(`Done buy_token.py: ${stdout}`);
+                console.log('Buying token...')
+                console.log(`${stdout}`);
             });
         
             // Delay before executing the next Python script
-            console.log("Running check_wallet_and_log_buy_prices.py");
+            // console.log("Running check_wallet_and_log_buy_prices.py");
             await new Promise(resolve => setTimeout(resolve, 3000)); // 3 seconds delay
         
             // Call the next Python script to log buy price and token details
@@ -187,7 +192,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
                     console.error(`check_wallet_and_log_buy_prices.py stderr: ${stderr}`);
                     return;
                 }
-                console.log(`Done check_wallet_and_log_buy_prices.py: ${stdout}`);
+                // console.log(`Done check_wallet_and_log_buy_prices.py: ${stdout}`);
             });
         } else {
             console.log(`Token address ${token_address} does not end with 'pump'. Skipping swap and logging.`);
@@ -221,6 +226,7 @@ function runPythonPriceChecker() {
             }
             // console.log(`Checking %'s gained..`);
             // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
+            // console.log('Selling token...')
             console.log(`${stdout}`);
             // console.log('Done check_wallet_and_sell.py')
         });

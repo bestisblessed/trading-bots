@@ -21,7 +21,11 @@ if (!fs.existsSync(directory)) {
 
 // Monitor logs with efficient filtering
 async function main(connection, programAddress) {
-    console.log("Monitoring logs for program:", programAddress.toString());
+    console.log();
+    console.log('-'.repeat(100));
+    // console.log("Monitoring logs for program:", programAddress.toString());
+    console.log("MONITORING LOGS");
+    console.log('-'.repeat(100));
 
     connection.onLogs(
         programAddress,
