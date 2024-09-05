@@ -83,6 +83,7 @@ def get_solana_token_data(token_address, buy_price_usd):
                 # Check if token has already been sold for 50% or 500% increase
                 if token_address in sold_tokens:
                     print(Fore.GREEN + f"Token {token_address} has already been sold at 50% gain, skipping.")
+                    print(Fore.WHITE + '-' * 50)
                     return
 
                 # Check if price has increased by 50% or more
