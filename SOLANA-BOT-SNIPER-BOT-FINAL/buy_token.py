@@ -34,7 +34,7 @@ params = {
     'inputMint': 'So11111111111111111111111111111111111111112',
     'outputMint': output_mint,
     'amount': str(int(0.02 * 10**9)), # Number of SOL to swap
-    'slippageBps': '300'  # 1% slippage
+    'slippageBps': '250'  # 1% slippage
 }
 response = requests.get(url, params=params)
 quoteResponse = response.json()
