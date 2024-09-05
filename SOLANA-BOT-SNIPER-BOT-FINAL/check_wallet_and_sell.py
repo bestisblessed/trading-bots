@@ -271,7 +271,7 @@ def get_solana_token_data(token_address, buy_price_usd):
 
                 # Check if price has increased by 500% or more
                 if price_increase_percentage >= 500:
-                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 500% increase: {token_address}.")
+                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 500% increase: {token_address}")
                     subprocess.run(['python', 'sell_token_500.py', token_address])
                     sold_tokens[token_address] = {
                         'sell_100_percent': sold_tokens.get(token_address, {}).get('sell_100_percent', False),
@@ -287,7 +287,7 @@ def get_solana_token_data(token_address, buy_price_usd):
 
                 # Check if price has increased by 100% or more
                 elif price_increase_percentage >= 100:
-                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 100% increase: {token_address}.")
+                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 100% increase: {token_address}")
                     subprocess.run(['python', 'sell_token_100.py', token_address])
                     sold_tokens[token_address] = {
                         'sell_100_percent': True,

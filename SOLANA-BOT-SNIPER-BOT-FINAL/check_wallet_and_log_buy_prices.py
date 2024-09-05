@@ -146,11 +146,11 @@ def get_solana_token_data(token_address):
             pair = token_data['pairs'][0]
             solana_token_name = pair['baseToken']['name']
             solana_token_symbol = pair['baseToken']['symbol']
-            solana_token_liquidity = pair['liquidity']['base']
+            solana_token_liquidity = pair.get('liquidity', {}).get('base', 'Liquidity not available')
             quote_token_name = pair['quoteToken']['name']
             quote_token_symbol = pair['quoteToken']['symbol']
-            quote_token_liquidity = pair['liquidity']['quote']
-            usd_liquidity = pair['liquidity']['usd']
+            quote_token_liquidity = pair.get('liquidity', {}).get('quote', 'Liquidity not available')
+            usd_liquidity = pair.get('liquidity', {}).get('usd', 'USD liquidity not available')
             price_usd = pair.get('priceUsd', 'Price not available')  # Get token price in USD
 
             # Check if the token is already in buy_prices.json
@@ -181,7 +181,8 @@ def get_solana_token_data(token_address):
             print(Fore.RED + f"No liq pairs found for: {token_address}")
     
     except requests.exceptions.RequestException as e:
-        print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+        # print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+        pass
 
 # Load the token addresses from the previously saved JSON file and check their prices and liquidity
 if os.path.exists(output_path):

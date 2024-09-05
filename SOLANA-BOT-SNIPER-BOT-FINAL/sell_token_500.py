@@ -54,6 +54,7 @@ for token in token_balances:
     if token['mint'] == mint_address:
         balance = float(token['amount'])
         decimals = int(token['decimals'])
+        symbol = token.get('symbol', 'Unknown')  # Get the token symbol, default to 'Unknown'
         portfolio_token = token
         break
 
@@ -61,16 +62,17 @@ for token in token_balances:
 if balance is None or decimals is None:
     raise ValueError(f"Mint address {mint_address} not found in the portfolio.")
 
-print(f"Balance: {balance}")
-print(f"Decimals: {decimals}")
+# print(f"Balance: {balance}")
+# print(f"Decimals: {decimals}")
+print(f"Token Symbol: {symbol}")
 
 # Calculate the sell amount
 sell_amount = float(balance) * 0.5
-print(f"Selling 50% of balance: {sell_amount}")
+print(f"Selling 50% of {symbol}: {sell_amount}")
 
 # Convert to raw token amount
 sell_amount_raw = int(sell_amount * 10**decimals)
-print(f"Sell amount raw: {sell_amount_raw}")
+# print(f"Sell amount raw: {sell_amount_raw}")
 
 # Prepare the quote API request
 url = 'https://quote-api.jup.ag/v6/quote'
@@ -116,7 +118,7 @@ try:
 
     # Get the transaction ID
     transaction_id = json.loads(result.to_json())['result']
-    print(f"Ran sell_token_500.py on {mint_address}")
+    # print(f"Ran sell_token_500.py on {mint_address}")
     print('Transaction ID: ', transaction_id)
 
 except RPCException as rpc_error:

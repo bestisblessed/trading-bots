@@ -69,7 +69,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
         const tokenBAddress = tokenBAccount.toBase58();
         const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
 
-        console.log(`Final Token Account Public Key: ${token_address}`);
+        console.log(`New Token: ${token_address}`);
 
         // Save the token data to a JSON file
         const newFileName = `${token_address}.json`;
@@ -80,7 +80,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
         // console.log(`Data saved to file: ${newFilePath}`);
 
         // Delay before executing the Python scripts
-        console.log("Running buy_token.py");
+        // console.log("Running buy_token.py");
         await new Promise(resolve => setTimeout(resolve, 3000)); // 5 seconds delay
 
         // Call the Python swap script with the new token_address
@@ -94,11 +94,11 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
                 console.error(`Swap stderr: ${stderr}`);
                 return;
             }
-            console.log(`Done buy_token.py: ${stdout}`);
+            console.log(`Swapping..... ${stdout}`);
         });
 
         // Delay before executing the Python scripts
-        console.log("Running check_wallet_and_log_buy_prices.py");
+        // console.log("Running check_wallet_and_log_buy_prices.py");
         await new Promise(resolve => setTimeout(resolve, 3000)); // 5 seconds delay
 
         // Call the next python script to log buy price and token details
@@ -128,10 +128,31 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
     }
 }
 
+// function runPythonPriceChecker() {
+//     if (!isPriceCheckerRunning) {
+//         isPriceCheckerRunning = true;
+//         // const priceCheckerCommand = `FORCE_COLOR=1 python check_wallet_and_sell.py`;
+//         const priceCheckerCommand = `python check_wallet_and_sell.py`;
+//         exec(priceCheckerCommand, (error, stdout, stderr) => {
+//             isPriceCheckerRunning = false;
+//             if (error) {
+//                 console.error(`Error executing check_wallet_and_sell.py: ${error.message}`);
+//                 return;
+//             }
+//             if (stderr) {
+//                 console.error(`check_wallet_and_sell.py stderr: ${stderr}`);
+//                 return;
+//             }
+//             // console.log(`Checking %'s gained..`);
+//             // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
+//             console.log(`${stdout}`);
+//             // console.log('Done check_wallet_and_sell.py')
+//         });
+//     }
+// }
 function runPythonPriceChecker() {
     if (!isPriceCheckerRunning) {
         isPriceCheckerRunning = true;
-        // const priceCheckerCommand = `FORCE_COLOR=1 python check_wallet_and_sell.py`;
         const priceCheckerCommand = `python check_wallet_and_sell.py`;
         exec(priceCheckerCommand, (error, stdout, stderr) => {
             isPriceCheckerRunning = false;
@@ -143,10 +164,10 @@ function runPythonPriceChecker() {
                 console.error(`check_wallet_and_sell.py stderr: ${stderr}`);
                 return;
             }
-            // console.log(`Checking %'s gained..`);
-            // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
-            console.log(`${stdout}`);
-            // console.log('Done check_wallet_and_sell.py')
+            // Only print stdout if it's not empty
+            if (stdout.trim()) {
+                console.log(`${stdout}`);
+            }
         });
     }
 }
