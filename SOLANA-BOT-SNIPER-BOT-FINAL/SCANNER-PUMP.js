@@ -205,7 +205,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
             await new Promise(resolve => setTimeout(resolve, delay));
             return fetchRaydiumAccounts(txId, connection, retryCount + 1);
         } else {
-            console.error("Error fetching Raydium accounts:", error);
+            // console.error("Error fetching Raydium accounts:", error);
         }
     }
 }

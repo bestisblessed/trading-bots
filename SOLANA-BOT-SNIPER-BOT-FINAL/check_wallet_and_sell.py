@@ -302,7 +302,8 @@ def get_solana_token_data(token_address, buy_price_usd):
                 print(Fore.RED + f"Invalid buy price for {token_address}.")
 
     except requests.exceptions.RequestException as e:
-        print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+        # print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+        pass
 
 # Save sold tokens to the sold_tokens.json file
 def save_sold_tokens():
