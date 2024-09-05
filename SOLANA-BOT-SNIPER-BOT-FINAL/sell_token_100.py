@@ -59,7 +59,7 @@ params = {
     'inputMint': mint_address,
     'outputMint': 'So11111111111111111111111111111111111111112',  # Converting to SOL
     'amount': sell_amount_raw,  # Sell all tokens
-    'slippageBps': '200'  # 1% slippage
+    'slippageBps': '150'  # 1% slippage
 }
 response = requests.get(url, params=params)
 quoteResponse = response.json()

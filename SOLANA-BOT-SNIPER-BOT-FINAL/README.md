@@ -13,7 +13,7 @@
 
 ## Usage
 
-### 1. Start the Scanner
+### 1. Run the Bot
 Run the scanner to detect new tokens and automatically buy them:
 ```bash
 node SCANNER.js
@@ -21,14 +21,19 @@ node SCANNER.js
 1. Finds & logs new tokens on Solana
 2. Runs buy_token.py - swaps specified amount in SOL of each new token
 3. Runs check_wallet_and_log_buy_prices.py - logs wallet balances and new buy prices of new tokens
+4. Runs check_wallet_and_sell.py - checks percent gained every 10 seconds and sells with depending on percent gained:
+    - sell_token_100.py
+    - sell_token_500.py
+    - sell_token_800.py
 
-### 2. Check Wallet and Trigger Sells
-Monitor the token prices in your wallet and trigger sales if prices increase:
+
+or
+
+### 2. runBot.sh
 ```bash
-python check_wallet_and_sell.py
+./runBot.sh
 ```
-1. Checks percent gained for each token in wallet so far
-2. Either runs sell_token_100.py, sell_token_500.py, sell_token_1000.py depending on percent gained
+
 
 ## License
 
