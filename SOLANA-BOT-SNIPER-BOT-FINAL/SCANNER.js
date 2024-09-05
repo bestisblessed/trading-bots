@@ -149,7 +149,7 @@ function runPythonPriceChecker() {
 
 // Run the Python price checker every 5 seconds
 function startPriceChecker() {
-    setInterval(runPythonPriceChecker, 10000);
+    setInterval(runPythonPriceChecker, 5000);
 }
 
 // Start monitoring logs and the price checker concurrently
