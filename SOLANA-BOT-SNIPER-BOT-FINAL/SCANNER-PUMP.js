@@ -166,7 +166,8 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
             const swapCommand = `python buy_token.py ${token_address}`;
             exec(swapCommand, (error, stdout, stderr) => {
                 if (error) {
-                    console.error(`Error executing swap: ${error.message}`);
+                    // console.error(`Error executing swap: ${error.message}`);
+                    console.log('FAILED SWAP')
                     return;
                 }
                 if (stderr) {
