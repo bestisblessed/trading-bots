@@ -89,7 +89,7 @@ def get_solana_token_data(token_address):
         # Check if token data and pairs exist and are not None
         if token_data and 'pairs' in token_data and token_data['pairs']:
             print(Fore.WHITE + '-' * 50)
-            print(Fore.CYAN + f"\n  TOKEN ADDRESS: {token_address}")  # Print token address
+            print(Fore.CYAN + f"  TOKEN ADDRESS: {token_address}")  # Print token address
             
             # Get the first pair only
             pair = token_data['pairs'][0]
@@ -119,15 +119,15 @@ def get_solana_token_data(token_address):
                     json.dump(buy_prices, f, indent=2)
 
             # Print liquidity and price details
-            print(Fore.YELLOW + f"\n  {solana_token_name} ({solana_token_symbol}) / {quote_token_name} ({quote_token_symbol})")
+            print(Fore.YELLOW + f"  {solana_token_name} ({solana_token_symbol}) / {quote_token_name} ({quote_token_symbol})")
             print(Fore.GREEN + f"  Price (USD): {price_usd}")
             print(Fore.GREEN + f"  Timestamp: {timestamp}")
             print(Fore.GREEN + f"  Liquidity (Solana Token): {solana_token_liquidity}")
             print(Fore.GREEN + f"  Liquidity (Quote Token): {quote_token_liquidity}")
-            print(Fore.GREEN + f"  Liquidity (USD): {usd_liquidity}\n")
+            print(Fore.GREEN + f"  Liquidity (USD): {usd_liquidity}")
         else:
             print(Fore.WHITE + '-' * 50)
-            print(Fore.RED + f"\nNo liq pairs found for: {token_address}\n")
+            print(Fore.RED + f"No liq pairs found for: {token_address}")
     
     except requests.exceptions.RequestException as e:
         print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")

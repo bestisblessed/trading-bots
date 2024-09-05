@@ -116,6 +116,7 @@ try:
 
     # Get the transaction ID
     transaction_id = json.loads(result.to_json())['result']
+    print(f"Ran sell_token_500.py on {mint_address}")
     print('Transaction ID: ', transaction_id)
 
 except RPCException as rpc_error:
