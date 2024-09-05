@@ -109,7 +109,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
                 return;
             }
             // console.log(`check_wallet_and_log_buy_prices.py stdout: ${stdout}`);
-            console.log('Done check_wallet_and_log_buy_prices.py')
+            // console.log('Done check_wallet_and_log_buy_prices.py')
         });
 
     } catch (error) {
@@ -141,7 +141,7 @@ function runPythonPriceChecker() {
             }
             // console.log(`Checking %'s gained..`);
             // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
-            // console.log(`${stdout}`);
+            console.log(`${stdout}`);
             // console.log('Done check_wallet_and_sell.py')
         });
     }

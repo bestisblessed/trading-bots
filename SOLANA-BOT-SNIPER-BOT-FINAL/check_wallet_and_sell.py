@@ -82,8 +82,8 @@ def get_solana_token_data(token_address, buy_price_usd):
 
                 # Check if token has already been sold for 50% or 500% increase
                 if token_address in sold_tokens:
-                    print(Fore.GREEN + f"Token {token_address} has already been sold at 50% gain, skipping.")
-                    print(Fore.WHITE + '-' * 50)
+                    # print(Fore.GREEN + f"Token {token_address} has already been sold at 50% gain, skipping.")
+                    # print(Fore.WHITE + '-' * 50)
                     return
 
                 # Check if price has increased by 50% or more
@@ -95,8 +95,10 @@ def get_solana_token_data(token_address, buy_price_usd):
                     save_sold_tokens()  # Save the file here after 500% sale
 
                 else:
-                    print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")
-                    print(Fore.WHITE + '-' * 50)
+                    # print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")
+                    # print(Fore.WHITE + '-' * 50)
+                    pass
+
             else:
                 print(Fore.RED + f"Invalid buy price for {token_address}.")
     
@@ -126,8 +128,8 @@ if os.path.exists(output_path):
             for token in token_data:
                 token_address = token.get('mint')
                 token_symbol = token.get('symbol')  # Extract the symbol for each token
-                if token_symbol:
-                    print(Fore.YELLOW + f"Token Symbol: {token_symbol}")
+                # if token_symbol:
+                    # print(Fore.YELLOW + f"Token Symbol: {token_symbol}")
 
                 # Check if we have the buy price for the token
                 if token_address and token_address in buy_prices:
