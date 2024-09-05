@@ -33,7 +33,7 @@ url = 'https://quote-api.jup.ag/v6/quote'
 params = {
     'inputMint': 'So11111111111111111111111111111111111111112',
     'outputMint': output_mint,
-    'amount': str(int(0.02 * 10**9)), # Number of SOL to swap
+    'amount': str(int(0.005 * 10**9)), # Number of SOL to swap
     'slippageBps': '250'  # 1% slippage
 }
 response = requests.get(url, params=params)
