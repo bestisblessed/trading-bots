@@ -72,7 +72,58 @@ else:
 # Dexscreener API endpoint for Solana tokens
 dexscreener_api_endpoint = 'https://api.dexscreener.com/latest/dex/tokens'
 
+# Define a blacklist of token mint addresses
+blacklisted_mint_addresses = [
+    "Ft379JgZeZiUpdgeZ2at1vrua6BRZ4zSxAzJA97pump",  # Smol Silly Cat
+    "AC2rXHST3J15pQjC9egQM1NG9nAJFdJs5UY7juKnpump",  # Attack cat
+    "AceZsMCrm9Ft3faC7HEwQhtZ17W28yhtSMj1iWdvA8DJ",  # NVIDIA
+    "F27fm4svbg3WF4bD8HQ412EmGDyVD9gTGRAv3HDtpjKX",  # Steph Curry
+    "Geby8f8AcVguhKk2HWbH7vQNAEjHSfmYDxqb3YeNpump",  # Tsuki
+    "5vm2Q2H7jXGGZNUMeSFcZHK6xDBPiqAUGicPnrLgpump",  # fire pussy
+    "8yTPx3vvxyu99vawVNLFKZnZeFCTZbNHjqdmUTVbpump",  # ant
+    "GhFYGUVc74iDSNcy6jz1sjM2GKBaxxdyrLxN4upd8o3E",  # FIRSTFWOG
+    "DMy7gxcGFJcPSwGyVm2VdwieP3BwpZTnKQmbZ93Gpump",  # Mr Paca
+    "6N26TiQmQ52hMnRMs6FFYLLuE9SEnkgofhZfD9dvpump",  # ali
+    "DTDh5a5jxZWteKAT1NFM5QXAPuWk15oFruEgw9pVWGzf",  # Dinoh Coin
+    "Z6akXpS92DH5FWFHVU6YYGLJd2XaPo1vZdyF6JDpump",  # Tron
+    "7QtA5Bg4eLtVbD7X7oDohxuRqzN9mRkuFoXKpoHdhQ1h",  # Grass
+    "rk54dG96SND7Y5V54ugm1X2WzxKZhrkczeZ1uEZpump",  # OUR Solana
+    "2WqFfneMQQuSnFeNZPiqi5r5jJTHFUYQ9hUCSjZipump",  # Sand Dog
+    "C1YhxP4gnnGnbGAe3VhxdQV4LGqmsXxFFb2HHL3tpump",  # SEAN KINGSTON
+    "Dx9xH9ACdX4yQWBkMEKz6uQ6yBioAUgLm2jBHy8Bpump",  # ashaley
+    "sHHdByEeznidqFvCj75iPK5uRD9SivNapD1rXLptBP4",   # Naruto
+    "M49wideShuYwmnBMi3xXBoGnfg2TpTYAWyLt9QApump",   # Snapcat
+    "HidqA4SP1owM2FXGBuypJZxqr8VgoGkcXVZvEr6FZFgy",  # Blobby
+    "3M2vepByfZTG6xUSmFidvSCFzHWFoVw7cPvyRDnUpump",  # KOLT
+    "CVUo3fiJDxHXtfGtS4eND3WKRMr54Lwfw4cd2Pnipump",  # discord cat
+    "NJbXipySpPwnsE72kiBJ6X8S5Whyk4mWyMrbJg9PqkQ",  # YEAH
+    "8XLq5abJUb3rhvbExaQAnXUGmXje7Po55bA6VJ5Npump",  # Mr Paca
+    "91d14ov7igkGaHoHxKHT2u7TRyLtCih93DeFPUDspump",  # trashKitty
+    "4qkLHhLqrzeJCkC61XF82F4FieUzrqX6nzzEWG7rjPNC",  # Make America Wealthy Again
+    "5xmnJLPMAgHSpLDR5GMuBWokw7yNdBCHBsV8ooAxpump",  # nono
+    "ApdjMxu7xcLTajTxrivmHaJDVLPYaeTeBeUQmz4qpump",  # Puffy
+    "EeK6Xd7jAUxjwURzvhV1vWpLHGX1JP6QbahBwATG8Qno",  # NVIDIA
+    "6XMXfMFX8S3gU21YThyf6hkifNM61ejRKvuvu8jApump",  # PIPICAT
+    "6LRHCKvqCX9JuQj8Fkx8yEM3c1PpyrV9NuPujc9Qpump",  # abcde
+    "5WVEKZRXxdTUWnv2ifNCfoKgQR2LfXpoKQDLMfZBpump",  # Trump X
+    "BdQUTM2gZnx6kMtidWncw5MPvnv1RNiofHFSSpezKwep",  # Soly The Mascot
+    "cLAaRTYScomqVpcf5a3ftFoSAU8sBMnELfo5qwHcYTq",   # WALLAHI IM FINISHED
+    "3Z9o7qc5Cq5B9LWecxvgLoJTtrpCmv3fhbZArbnxwVTh",  # Blasted Cat
+    "GSomyV7ZxYnKpDzfeWxUSeq3REqMDNMfXvt3ou83pump",  # Grumpy Sam
+    "H7UBVmK2jKiedfkUcC8JiAzh6yDsvmV5Ev8oU8S6Z4Qy",  # Red Trump
+    "2mnGSkXH1h6x5qmhwoQzAZDKa83vnRf8wNkNWVbdv7w5",  # Strudels on Solana
+    "AxoZRsp5NV8DsufRxtMzuAGYseCVPre3RsTMrkzmnwpR",  # APO
+    "B4gtR5n7BEMeyWmJfPqamdMRvQ8y7xNWeebFg53Apump",  # NILLY
+    "9MBzpyMRkj2r5nTQZMMnxnCm5j1MAAFSYUtbSKjAF3WU",  # Zoomer
+    "EKEWAk7hfnwfR8DBb1cTayPPambqyC7pwNiYkaYQKQHp",  # Roaring Kitty
+]
+
 def get_solana_token_data(token_address):
+    # Check if the token is in the blacklist
+    if token_address in blacklisted_mint_addresses:
+        # print(Fore.RED + f"Token {token_address} is blacklisted. Skipping.")
+        return
+
     if token_address.startswith("So1"):
         print(Fore.RED + f"Skipping token with address starting with 'So1': {token_address}")
         return
