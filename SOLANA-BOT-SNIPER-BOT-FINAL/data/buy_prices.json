@@ -1,0 +1,37 @@
+{
+  "7nWspu6U3xW3y4uc9ffVi8PtKt4jvfHpCo8tRqsDpump": {
+    "name": "Sirius The Dog Star",
+    "symbol": "Sirius",
+    "price_usd": "0.00001205",
+    "liquidity_usd": 10616.66,
+    "timestamp": "2024-09-05 01:33"
+  },
+  "5YzQjNqUfQ87m38xejJsUy35b8DsihYvN2ajinMjfmfh": {
+    "name": "Puffy",
+    "symbol": "PUFFY",
+    "price_usd": "0.00000002917",
+    "liquidity_usd": 404.79,
+    "timestamp": "2024-09-05 01:33"
+  },
+  "4VrYoRjkGXvHxbdKNBKYFyNNhKxrmukZh2Jsubfmpump": {
+    "name": "Aitrolls",
+    "symbol": "Aitrolls",
+    "price_usd": "0.00004157",
+    "liquidity_usd": 19107.43,
+    "timestamp": "2024-09-05 01:33"
+  },
+  "GR4SFnwXT4BxXRVvV7ySuWUnonuyKEokrQGHLTZFJe5F": {
+    "name": "\ud83e\udd29Soly The Mascot",
+    "symbol": "\ud83e\udd29SOLY",
+    "price_usd": "0.0000009262",
+    "liquidity_usd": 0.06,
+    "timestamp": "2024-09-05 01:33"
+  },
+  "DjdnBtLiktxpcnfMatnjbuCvZbuTb2A2qZoLLNu5KvQm": {
+    "name": "SOLA AOI\ud83d\udc59",
+    "symbol": "SOLA AOI",
+    "price_usd": "0.00000004541",
+    "liquidity_usd": 1.38,
+    "timestamp": "2024-09-05 01:33"
+  }
+}
