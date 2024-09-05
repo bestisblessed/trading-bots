@@ -39,7 +39,7 @@ async function main(connection, programAddress) {
 // Fetch and process transaction with a 0.5s delay on 429 error
 async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
     const maxRetries = 5;
-    const baseDelay = 250;  // 0.25-second delay
+    const baseDelay = 500;  // 0.25-second delay
 
     try {
         // Fetch the transaction data
@@ -70,11 +70,11 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
 
         const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
 
-        console.log(`Transaction URL: https://solscan.io/tx/${txId}`);
-        console.log(`Token A Account Public Key: ${tokenAAddress}`);
-        console.log(`Token B Account Public Key: ${tokenBAddress}`);
+        // console.log(`Transaction URL: https://solscan.io/tx/${txId}`);
+        // console.log(`Token A Account Public Key: ${tokenAAddress}`);
+        // console.log(`Token B Account Public Key: ${tokenBAddress}`);
         console.log(`Final Token Account Public Key: ${token_address}`);
-        console.log(`Total RPC Credits Used in this session: ${credits}`);
+        // console.log(`Total RPC Credits Used in this session: ${credits}`);
 
         // Save the token data to a JSON file
         const newFileName = `${token_address}.json`;
