@@ -127,6 +127,7 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
 function runPythonPriceChecker() {
     if (!isPriceCheckerRunning) {
         isPriceCheckerRunning = true;
+        // const priceCheckerCommand = `FORCE_COLOR=1 python check_wallet_and_sell.py`;
         const priceCheckerCommand = `python check_wallet_and_sell.py`;
         exec(priceCheckerCommand, (error, stdout, stderr) => {
             isPriceCheckerRunning = false;
