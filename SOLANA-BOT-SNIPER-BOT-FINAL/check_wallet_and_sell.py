@@ -5,6 +5,7 @@ import datetime
 from dotenv import load_dotenv
 from colorama import init, Fore, Style
 import subprocess  # To run sell_token.py and sell_token_500.py
+from decimal import Decimal  # Use Decimal for high precision
 
 # Initialize colorama
 init(autoreset=True)
@@ -64,11 +65,14 @@ def get_solana_token_data(token_address, buy_price_usd):
             
             # Get the first pair only
             pair = token_data['pairs'][0]
-            price_usd = float(pair.get('priceUsd', '0'))  # Get token price in USD
+            # price_usd = float(pair.get('priceUsd', '0'))  # Get token price in USD
+            price_usd = Decimal(pair.get('priceUsd', '0'))  # Use Decimal for high precision
+            buy_price_usd = Decimal(buy_price_usd)
 
             # Calculate price increase
             if buy_price_usd > 0:
                 price_increase_percentage = ((price_usd - buy_price_usd) / buy_price_usd) * 100
+                
 
                 # Check if price has increased by 500% or more
                 if price_increase_percentage >= 500:
@@ -78,7 +82,7 @@ def get_solana_token_data(token_address, buy_price_usd):
 
                 # Check if token has already been sold for 50% or 500% increase
                 if token_address in sold_tokens:
-                    print(Fore.YELLOW + f"Token {token_address} has already been sold at 50% gain, skipping.")
+                    print(Fore.GREEN + f"Token {token_address} has already been sold at 50% gain, skipping.")
                     return
 
                 # Check if price has increased by 50% or more
@@ -87,6 +91,7 @@ def get_solana_token_data(token_address, buy_price_usd):
                     # Run the sell_token.py script
                     subprocess.run(['python', 'sell_token_100.py', token_address])
                     sold_tokens[token_address] = {'sell_percentage': 50, 'timestamp': timestamp}  # Add to sold tokens
+                    save_sold_tokens()  # Save the file here after 500% sale
 
                 else:
                     print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")
