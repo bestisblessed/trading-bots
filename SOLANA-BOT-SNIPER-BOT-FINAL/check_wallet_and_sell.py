@@ -86,7 +86,7 @@ def get_solana_token_data(token_address, buy_price_usd):
                     print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 50% increase: {token_address}.")
                     # Run the sell_token.py script
                     subprocess.run(['python', 'sell_token_100.py', token_address])
-                    sold_tokens[token_address] = {'sell_percentage': 75, 'timestamp': timestamp}  # Add to sold tokens
+                    sold_tokens[token_address] = {'sell_percentage': 50, 'timestamp': timestamp}  # Add to sold tokens
 
                 else:
                     print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")

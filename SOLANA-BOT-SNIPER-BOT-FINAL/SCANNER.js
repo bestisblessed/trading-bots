@@ -141,8 +141,8 @@ function runPythonPriceChecker() {
             }
             // console.log(`Checking %'s gained..`);
             // console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
-            console.log(`${stdout}`);
-            // console.log('Done check_wallet_and_sell.py')
+            // console.log(`${stdout}`);
+            console.log('Done check_wallet_and_sell.py')
         });
     }
 }
