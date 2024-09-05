@@ -18,18 +18,17 @@ Run the scanner to detect new tokens and automatically buy them:
 ```bash
 node SCANNER.js
 ```
+1. Finds & logs new tokens on Solana
+2. Runs buy_token.py - swaps specified amount in SOL of each new token
+3. Runs check_wallet_and_log_buy_prices.py - logs wallet balances and new buy prices of new tokens
 
-### 2. Log Buy Prices
-After the scanner buys tokens, log the buy prices:
-```bash
-python check_wallet_and_log_buy_prices.py
-```
-
-### 3. Check Wallet and Trigger Sells
+### 2. Check Wallet and Trigger Sells
 Monitor the token prices in your wallet and trigger sales if prices increase:
 ```bash
 python check_wallet_and_sell.py
 ```
+1. Checks percent gained for each token in wallet so far
+2. Either runs sell_token_100.py, sell_token_500.py, sell_token_1000.py depending on percent gained
 
 ## License
 

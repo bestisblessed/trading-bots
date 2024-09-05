@@ -21,9 +21,17 @@ if not os.path.exists(data_dir):
 wallet_address = "7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE"  # Example wallet address
 output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
 buy_prices_path = os.path.join(data_dir, 'buy_prices.json')  # Path to your buy prices JSON
+sold_tokens_path = os.path.join(data_dir, 'sold_tokens.json')  # Path to track sold tokens
 
 # Dexscreener API endpoint for Solana tokens
 dexscreener_api_endpoint = 'https://api.dexscreener.com/latest/dex/tokens'
+
+# Load the sold tokens if it exists, else create an empty dictionary
+if os.path.exists(sold_tokens_path):
+    with open(sold_tokens_path, 'r') as f:
+        sold_tokens = json.load(f)
+else:
+    sold_tokens = {}
 
 print(" ")
 
@@ -60,11 +68,17 @@ def get_solana_token_data(token_address, buy_price_usd):
                     # Run the sell_token_500.py script
                     subprocess.run(['python', 'sell_token_500.py', token_address])
 
-                # Check if price has increased by 75% or more
-                elif price_increase_percentage >= 75:
-                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 75% increase: {token_address}.")
+                # Check if token has already been sold for 50% or 500% increase
+                if token_address in sold_tokens:
+                    print(Fore.YELLOW + f"Token {token_address} has already been sold at 50% gain, skipping.")
+                    return
+
+                # Check if price has increased by 50% or more
+                elif price_increase_percentage >= 50:
+                    print(Fore.GREEN + f"Price increased by {price_increase_percentage:.2f}%! Triggering sell for 50% increase: {token_address}.")
                     # Run the sell_token.py script
                     subprocess.run(['python', 'sell_token_100.py', token_address])
+                    sold_tokens[token_address] = {'sell_percentage': 75, 'timestamp': timestamp}  # Add to sold tokens
 
                 else:
                     print(Fore.MAGENTA + f"Price increase is only {price_increase_percentage:.2f}%, not triggering a sell.")
@@ -74,6 +88,11 @@ def get_solana_token_data(token_address, buy_price_usd):
     
     except requests.exceptions.RequestException as e:
         print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+
+# Save sold tokens to the sold_tokens.json file
+def save_sold_tokens():
+    with open(sold_tokens_path, 'w') as f:
+        json.dump(sold_tokens, f, indent=4)
 
 # Load buy prices from buy_prices.json
 if os.path.exists(buy_prices_path):
