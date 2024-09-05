@@ -1,0 +1,6 @@
+requests==2.31.0
+solders==0.21.0
+solana==0.34.3
+python-dotenv==1.0.1
+moralis==0.1.49
+
