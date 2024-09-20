@@ -13,7 +13,9 @@ const printTokens = async () => {
       { programId: TOKEN_PROGRAM_ID }
     );
 
+    console.log('');
     console.log(`Found ${tokenAccounts.value.length} token accounts for wallet ${owner.publicKey.toBase58()}:`);
+    console.log('------------------------');
 
     // Iterate over each token account and print details with a 2-second delay
     for (const { pubkey, account } of tokenAccounts.value) {
@@ -32,13 +34,20 @@ const printTokens = async () => {
       console.log(`Mint Address: ${mintAddress}`);
       console.log(`Token Balance: ${tokenBalance}`);
       console.log(`Decimals: ${decimals}`);
+
+      // Mint details
+      console.log(`Total Supply: ${Number(mintInfo.supply) / Math.pow(10, decimals)}`);
+      console.log(`Mint Authority: ${mintInfo.mintAuthority ? mintInfo.mintAuthority.toBase58() : 'None'}`);
+      console.log(`Freeze Authority: ${mintInfo.freezeAuthority ? mintInfo.freezeAuthority.toBase58() : 'None'}`);
+      console.log(`Mint is Initialized: ${mintInfo.isInitialized}`);
       console.log('------------------------');
 
       // Wait for 2 seconds before processing the next token
-      await delay(2000);
+      await delay(500);
     }
   } catch (error) {
-    console.error("Error fetching token accounts:", error);
+    // console.log('');
+    // console.error("Error fetching token accounts:", error);
   }
 };
 
