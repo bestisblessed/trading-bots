@@ -1,0 +1,119 @@
+{
+  "DWiaPh5PoHd6rcgC93HHHoRhmBZd61mrGAEFYqPSyExv": "No trading pairs found",
+  "AsrDRZysDWkV8PrWUwJUsEbxHRu2RM4Wug8E8do1pump": "No trading pairs found",
+  "6eyxQYNxcmzKFYzoP7eNAqxmabAwyPyo3NjML97gJHAy": "No trading pairs found",
+  "EEjChEQxXPezcUCNsEGePzxjQfZodt1QPgG7vxP5pump": "No trading pairs found",
+  "Bv5A8ULGaRxsNmXfCcaaqGUNaz3unradifsxABzbpump": "No trading pairs found",
+  "5YzQjNqUfQ87m38xejJsUy35b8DsihYvN2ajinMjfmfh": "No trading pairs found",
+  "H7UBVmK2jKiedfkUcC8JiAzh6yDsvmV5Ev8oU8S6Z4Qy": "No trading pairs found",
+  "7retgV8bwQtN6TL8GqJVGuuJ1EwLYBYYkR6cFzpc5pa5": "No trading pairs found",
+  "6UcKzXYJ4RiwMvVXWjmg5BgmeY3rKnksRQ3heiPxAiro": "No trading pairs found",
+  "2wKnCWEVAXn79DTpn2Zdxokhg3vNxGUBARC2PD1epump": [
+    {
+      "pairAddress": "22Z5m6F26JGoo4GUUtESyFC3k77qSWbuoVJxSvdseuDa",
+      "baseTokenName": "Beer Frog",
+      "baseTokenSymbol": "FROG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "raydium",
+      "liquidityUsd": 6061.54,
+      "volume24h": 124031.37,
+      "priceUsd": "0.000003704"
+    },
+    {
+      "pairAddress": "FdkTEMoMctFWg2FqhxbQkmNq82YhRzx4EBjqkAGL6CU8",
+      "baseTokenName": "Beer Frog",
+      "baseTokenSymbol": "FROG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "meteora",
+      "liquidityUsd": 248.45,
+      "volume24h": 292.99,
+      "priceUsd": "0.00007956"
+    },
+    {
+      "pairAddress": "DojZBEgQAbxL1VDi8SBammzpijS6feXrhxybZQbvyof6",
+      "baseTokenName": "Beer Frog⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 2wKnCWEVAXn79DTpn2Zdxokhg3vNxGUBARC2PD1epump",
+      "baseTokenSymbol": "FROG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "fluxbeam",
+      "liquidityUsd": 15071.48,
+      "volume24h": 3.06,
+      "priceUsd": "0.00001509"
+    },
+    {
+      "pairAddress": "65YRv1WqcxksDASbPPm7MbDbfoQX6ZAeKAVzcbd6whq4",
+      "baseTokenName": "Beer Frog ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀s2wKnCWEVAXn79DTpn2Zdxokhg3vNxGUBARC2PD1epump",
+      "baseTokenSymbol": "FROG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "fluxbeam",
+      "liquidityUsd": 1207.13,
+      "volume24h": 1.24,
+      "priceUsd": "0.0000006054"
+    }
+  ],
+  "EATGZHJViJsk7nEKkrdJicwNbfpkJfAtmrEmrjXR8NBj": [
+    {
+      "pairAddress": "FmLmM2C3svyMmRwzTmnEjGnA5cD4YBLuPoQPixqZJG15",
+      "baseTokenName": "PopDog",
+      "baseTokenSymbol": "POPDOG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "raydium",
+      "liquidityUsd": 174192.24,
+      "volume24h": 233806.36,
+      "priceUsd": "0.002336"
+    },
+    {
+      "pairAddress": "GhLv52sikPsmXNvDHM6u3G4p1PssEURXGB8yMyHu9pbA",
+      "baseTokenName": "PopDog",
+      "baseTokenSymbol": "POPDOG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "raydium",
+      "liquidityUsd": 39.56,
+      "volume24h": 35.57,
+      "priceUsd": "0.002319"
+    },
+    {
+      "pairAddress": "AMvrH5vfgksadVGemr3ndTBzM5Ma7F5Gw4eNxFBZCnjZ",
+      "baseTokenName": "PopDog",
+      "baseTokenSymbol": "POPDOG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "meteora",
+      "liquidityUsd": 1.62,
+      "volume24h": 0.15,
+      "priceUsd": "0.002110"
+    },
+    {
+      "pairAddress": "AzaL1asDMvigv33gNJFEvnp79ZfLHfGbCak5A8PdB4Ln",
+      "baseTokenName": "Galactic Under Dog Banana ",
+      "baseTokenSymbol": "GUDB",
+      "quoteTokenSymbol": "POPDOG",
+      "dexId": "orca",
+      "liquidityUsd": 178.91,
+      "volume24h": 51.31,
+      "priceUsd": "0.000003118"
+    },
+    {
+      "pairAddress": "FjAREYis2NQBVRyZUqaWcPFQSKBxc26kMJDNbxTYztBE",
+      "baseTokenName": "PopDog⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ EATGZHJViJsk7nEKkrdJicwNbfpkJfAtmrEmrjXR8NBj",
+      "baseTokenSymbol": "POPDOG",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "fluxbeam",
+      "liquidityUsd": "N/A",
+      "volume24h": 1.49,
+      "priceUsd": "0.00003757"
+    }
+  ],
+  "4VrYoRjkGXvHxbdKNBKYFyNNhKxrmukZh2Jsubfmpump": [
+    {
+      "pairAddress": "EqGhvVZFasqy1MwjVmmjdi83V5h4SrNYFDvoj3xSPz7B",
+      "baseTokenName": "Aitrolls",
+      "baseTokenSymbol": "Aitrolls",
+      "quoteTokenSymbol": "SOL",
+      "dexId": "raydium",
+      "liquidityUsd": 5053.92,
+      "volume24h": 0.6,
+      "priceUsd": "0.000002537"
+    }
+  ],
+  "5igYvqHAnJ5YgoRjQY5JgHKacp8WKbJJDSS23MAqBwBo": "No trading pairs found",
+  "2JryUGrXL5x4SAWCjV3vF8jGYQoFDQhmxdykaYE1qNSa": "No trading pairs found"
+}
