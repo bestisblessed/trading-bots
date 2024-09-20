@@ -531,8 +531,10 @@ async function rugDetector(tokenMintAddress) {
                 try {
                     fs.writeFileSync(outputFilePath, JSON.stringify(rankData, null, 2));
                     console.log(`Processed ${tokenData.tokenMintAddress} and assigned rank ${rank}`);
+                    console.log('------------------------');
                 } catch (error) {
                     console.error(`Error saving rank file for ${tokenData.tokenMintAddress}:`, error);
+                    console.log('------------------------');
                 }
             }
         });
