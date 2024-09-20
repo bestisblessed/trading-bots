@@ -250,18 +250,8 @@ fs.readdir('./rug-detections/', (err, files) => {
             if (tokenData.liquidity > 10000 && tokenData.ownershipRenounced) {
                 rank = 3;
             }
-
-            // if (tokenData.liquidity > 10000 && tokenData.ownershipRenounced && 
-            //     tokenData.mintAuthority === 'None' && tokenData.freezeAuthority === 'None') {
-            //     rank = 5;
-            // }
-
-            // if (tokenData.liquidity > 10000 && tokenData.ownershipRenounced && 
-            //     tokenData.mintAuthority === 'None' && tokenData.freezeAuthority === 'None') {
-            //     rank = 5;
-            // }
             
-            if (rank === 0 && tokenData.liquidity > 10000 &&
+            if (tokenData.liquidity > 10000 &&
                 tokenData.ownershipRenounced &&
                 tokenData.mintAuthority === 'None' &&
                 tokenData.freezeAuthority === 'None') {
