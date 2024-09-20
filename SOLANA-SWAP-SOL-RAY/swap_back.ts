@@ -162,7 +162,7 @@ export const apiSwap = async () => {
   const inputMintDecimals = inputMintInfo.decimals;
 
   // Define amount in whole tokens (e.g., 5 tokens)
-  const amountInTokens = 133; // Adjust this based on how much you want to swap (e.g., 0.4 tokens)
+  const amountInTokens = 500; // Adjust this based on how much you want to swap (e.g., 0.4 tokens)
   
   // Calculate the amount in the smallest unit
   const amount = amountInTokens * Math.pow(10, inputMintDecimals);

@@ -32,7 +32,7 @@ interface SwapCompute {
 
 export const apiSwap = async () => {
   const inputMint = NATIVE_MINT.toBase58()
-  const outputMint = 'EATGZHJViJsk7nEKkrdJicwNbfpkJfAtmrEmrjXR8NBj'
+  const outputMint = '2wKnCWEVAXn79DTpn2Zdxokhg3vNxGUBARC2PD1epump'
   const amount = 20_000_000; // This will swap 0.02 SOL
   const slippage = 2.0 // in percent, for this example, 0.5 means 0.5%
   const txVersion: string = 'V0' // or LEGACY
