@@ -100,12 +100,12 @@ async function fetchRaydiumAccounts(txId, connection) {
     fs.writeFileSync(newFilePath, JSON.stringify(dataToSave, null, 2));
     console.log(`Data saved to file: ${newFilePath}`);
 
-    // Add the token address to the queue
-    transactionQueue.push(token_address);
-    processQueue();
+//     // // Add the token address to the queue
+//     // transactionQueue.push(token_address);
+//     // processQueue();
 
 //     // Execute rug_detector_final.js with the token_address
-//     const command = `node ./rug_detector_final.js ${token_address}`;
+//     const command = `node rug_detector_final.js ${token_address}`;
 //     exec(command, (error, stdout, stderr) => {
 //         if (error) {
 //             console.error(`Error executing rug_detector_final.js: ${error}`);
@@ -119,6 +119,26 @@ async function fetchRaydiumAccounts(txId, connection) {
 
 // }
 
+
+    // Add a 60-second (60000 ms) delay before running rug_detector
+    const delayInMilliseconds = 30000; // 60 seconds
+    setTimeout(() => {
+        // Execute rug_detector_final.js with the token_address after 60 seconds
+        const command = `node rug_detector_final.js ${token_address}`;
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error executing rug_detector_final.js: ${error}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Error output from rug_detector_final.js: ${stderr}`);
+            }
+            console.log(`rug_detector_final.js output:\n${stdout}`);
+        });
+    }, delayInMilliseconds);
+}
+
+main(connection, raydium).catch(console.error);
 
     // // Delay execution by 2 minutes (120,000 milliseconds)
     // console.log('Waiting 20 seconds..')
@@ -137,42 +157,42 @@ async function fetchRaydiumAccounts(txId, connection) {
 
     // }, delayInMilliseconds);
 
-}
+// }
 
-// # Process Queue
-function processQueue() {
-    if (isProcessingQueue) {
-        // Already processing the queue
-        return;
-    }
-    if (transactionQueue.length === 0) {
-        // Queue is empty
-        return;
-    }
-    isProcessingQueue = true;
+// // # Process Queue
+// function processQueue() {
+//     if (isProcessingQueue) {
+//         // Already processing the queue
+//         return;
+//     }
+//     if (transactionQueue.length === 0) {
+//         // Queue is empty
+//         return;
+//     }
+//     isProcessingQueue = true;
 
-    const token_address = transactionQueue.shift();
+//     const token_address = transactionQueue.shift();
 
-    // Delay execution by 20 seconds
-    const delayInMilliseconds = 40000; // 20 seconds
-    setTimeout(() => {
-        // Execute rug_detector_final.js with the token_address
-        const command = `node ./rug_detector_final.js ${token_address}`;
-        exec(command, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error executing rug_detector_final.js: ${error}`);
-                console.error(`Error output: ${stderr}`);
-            } else {
-                console.log(`rug_detector_final.js output:\n${stdout}`);
-            }
-            isProcessingQueue = false;
-            processQueue(); // Process next token in the queue
-        });
-    }, delayInMilliseconds);
-}
+//     // Delay execution by 20 seconds
+//     const delayInMilliseconds = 40000; // 20 seconds
+//     setTimeout(() => {
+//         // Execute rug_detector_final.js with the token_address
+//         const command = `node ./rug_detector_final.js ${token_address}`;
+//         exec(command, (error, stdout, stderr) => {
+//             if (error) {
+//                 console.error(`Error executing rug_detector_final.js: ${error}`);
+//                 console.error(`Error output: ${stderr}`);
+//             } else {
+//                 console.log(`rug_detector_final.js output:\n${stdout}`);
+//             }
+//             isProcessingQueue = false;
+//             processQueue(); // Process next token in the queue
+//         });
+//     }, delayInMilliseconds);
+// }
 
 
-main(connection, raydium).catch(console.error);
+// main(connection, raydium).catch(console.error);
 
 
 
