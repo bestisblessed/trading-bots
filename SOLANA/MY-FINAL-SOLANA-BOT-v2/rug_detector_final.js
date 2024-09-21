@@ -65,7 +65,7 @@ async function rugDetector(tokenMintAddress) {
     // console.log(`Top holders for token ${tokenMintAddress}:`);
     // largestAccounts.value.forEach((accountInfo, index) => {
     //     console.log(`  ${index + 1}. Account: ${accountInfo.address.toBase58()}, Amount: ${accountInfo.uiAmount}`);
-    });
+    // });
 
     const topHolderThreshold = 50;
     const largestHolder = largestAccounts.value[0];
