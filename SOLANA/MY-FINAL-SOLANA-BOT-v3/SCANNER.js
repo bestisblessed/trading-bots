@@ -137,6 +137,8 @@ async function fetchRaydiumAccounts(txId, connection) {
     //         console.log(stdout);
     //         console.log('2_rug_detector_final.js executed successfully.');
 
+    console.log('Using token: ', token_address)
+
     // Execute the Python script with the mint address
     exec(`python 1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
         if (error) {
