@@ -107,25 +107,38 @@ async function fetchRaydiumAccounts(txId, connection) {
 
     console.log(`Data saved to file: ${newFilePath}`);
 
-//     // Execute the Python script after saving the data
-//     exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
-//         if (error) {
-//             console.error(`Error executing Python script: ${error.message}`);
-//             return;
-//         }
+    // // Execute the Python script after saving the data
+    // exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
+    //     if (error) {
+    //         console.error(`Error executing Python script: ${error.message}`);
+    //         return;
+    //     }
 
-//         if (stderr) {
-//             console.error(`Python script stderr: ${stderr}`);
-//             return;
-//         }
-//         // console.log(`Python script output: ${stdout}`);
-//         console.log(stdout);
+    //     if (stderr) {
+    //         console.error(stderr);
+    //         return;
+    //     }
+        
+    //     console.log(stdout);
+    //     console.log('1_rug_detector_final.py executed successfully.');
 
+    //     // After the Python script finishes, execute the 2_rug_detector_final.js script
+    //     exec('node 2_rug_detector_final.js', (error, stdout, stderr) => {
+    //         if (error) {
+    //             console.error(`Error executing JavaScript script: ${error.message}`);
+    //             return;
+    //         }
 
-//     });
-// }
-    // Execute the Python script after saving the data
-    exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
+    //         if (stderr) {
+    //             console.error(stderr);
+    //             return;
+    //         }
+
+    //         console.log(stdout);
+    //         console.log('2_rug_detector_final.js executed successfully.');
+
+    // Execute the Python script with the mint address
+    exec(`python 1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing Python script: ${error.message}`);
             return;
@@ -139,10 +152,10 @@ async function fetchRaydiumAccounts(txId, connection) {
         console.log(stdout);
         console.log('1_rug_detector_final.py executed successfully.');
 
-        // After the Python script finishes, execute the 2_rug_detector_final.js script
-        exec('node 2_rug_detector_final.js', (error, stdout, stderr) => {
+        // After the Python script finishes, execute the 2_rug_detector_final.js script with the same mint address
+        exec(`node 2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error executing JavaScript script: ${error.message}`);
+                console.error(`Error executing 2_rug_detector_final.js: ${error.message}`);
                 return;
             }
 
@@ -156,6 +169,7 @@ async function fetchRaydiumAccounts(txId, connection) {
         });
     });
 }
+
 // Adding another script
 //         // After 2_rug_detector_final.js finishes, execute the 3_rug_detector_final.js script
 //         exec('node 3_rug_detector_final.js', (error, stdout, stderr) => {

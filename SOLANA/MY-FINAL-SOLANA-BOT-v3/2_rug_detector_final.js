@@ -9,8 +9,8 @@ const rankingsDir = './rankings/';
 
 console.log('');
 
-async function rugDetector(tokenMintAddress) {
-    const csvFilePath = path.join(__dirname, 'rug-detections', `${tokenMintAddress}.csv`);
+async function rugDetector(mint_address) {
+    const csvFilePath = path.join(__dirname, 'rug-detections', `${mint_address}.csv`);
     let liquidityUsd = 0;
 
     if (fs.existsSync(csvFilePath)) {
@@ -29,35 +29,35 @@ async function rugDetector(tokenMintAddress) {
                 .on('error', reject);
         });
     } else {
-        console.error(`CSV file for ${tokenMintAddress} not found.`);
+        console.error(`CSV file for ${mint_address} not found.`);
         return; // Exit if the CSV file doesn't exist
     }
 
     const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
-    const mintPublicKey = new PublicKey(tokenMintAddress);
+    const mintPublicKey = new PublicKey(mint_address);
     const mintInfo = await getMint(connection, mintPublicKey);
 
     if (mintInfo.freezeAuthority) {
-        console.log(`FAIL: Token ${tokenMintAddress} is freezeable. Freeze Authority: ${mintInfo.freezeAuthority.toBase58()}`);
+        console.log(`FAIL: Token ${mint_address} is freezeable. Freeze Authority: ${mintInfo.freezeAuthority.toBase58()}`);
     } else {
-        console.log(`PASS: Token ${tokenMintAddress} is not freezeable.`);
+        console.log(`PASS: Token ${mint_address} is not freezeable.`);
     }
 
     if (mintInfo.mintAuthority) {
-        console.log(`FAIL: Token ${tokenMintAddress} has a mint authority: ${mintInfo.mintAuthority.toBase58()}`);
+        console.log(`FAIL: Token ${mint_address} has a mint authority: ${mintInfo.mintAuthority.toBase58()}`);
     } else {
-        console.log(`PASS: Token ${tokenMintAddress} does not have a mint authority.`);
+        console.log(`PASS: Token ${mint_address} does not have a mint authority.`);
     }
 
     if (!mintInfo.mintAuthority && !mintInfo.freezeAuthority) {
-        console.log(`PASS: Token ${tokenMintAddress} has renounced ownership (no mint or freeze authority).`);
+        console.log(`PASS: Token ${mint_address} has renounced ownership (no mint or freeze authority).`);
     } else {
-        console.log(`FAIL: Token ${tokenMintAddress} has not renounced ownership.`);
+        console.log(`FAIL: Token ${mint_address} has not renounced ownership.`);
     }
 
     const largestAccounts = await connection.getTokenLargestAccounts(mintPublicKey);
 
-    console.log(`Top holders for token ${tokenMintAddress}:`);
+    console.log(`Top holders for token ${mint_address}:`);
     largestAccounts.value.forEach((accountInfo, index) => {
         console.log(`  ${index + 1}. Account: ${accountInfo.address.toBase58()}, Amount: ${accountInfo.uiAmount}`);
     });
@@ -71,13 +71,13 @@ async function rugDetector(tokenMintAddress) {
     }
 
     if (liquidityUsd < 10000) {
-        console.log(`FAIL: Token ${tokenMintAddress} has low liquidity ($ ${liquidityUsd}).`);
+        console.log(`FAIL: Token ${mint_address} has low liquidity ($ ${liquidityUsd}).`);
     } else {
-        console.log(`PASS: Token ${tokenMintAddress} has sufficient liquidity $ ${liquidityUsd}.`);
+        console.log(`PASS: Token ${mint_address} has sufficient liquidity $ ${liquidityUsd}.`);
     }
 
     const results = {
-        tokenMintAddress,
+        mint_address,
         freezeAuthority: mintInfo.freezeAuthority ? mintInfo.freezeAuthority.toBase58() : 'None',
         mintAuthority: mintInfo.mintAuthority ? mintInfo.mintAuthority.toBase58() : 'None',
         ownershipRenounced: !mintInfo.mintAuthority && !mintInfo.freezeAuthority,
@@ -90,7 +90,7 @@ async function rugDetector(tokenMintAddress) {
         liquidity: liquidityUsd
     };
 
-    const filePath = path.join(__dirname, 'rug-detections', `${tokenMintAddress}.json`);
+    const filePath = path.join(__dirname, 'rug-detections', `${mint_address}.json`);
     try {
         fs.writeFileSync(filePath, JSON.stringify(results, null, 2));
         console.log(`Data saved to ${filePath}`);
@@ -115,7 +115,7 @@ fs.readdir('./rug-detections/', (err, files) => {
             const tokenData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
             // Find the corresponding CSV file with the liquidity values
-            const csvFilePath = path.join('./rug-detections/', `${tokenData.tokenMintAddress}.csv`);
+            const csvFilePath = path.join('./rug-detections/', `${tokenData.mint_address}.csv`);
             if (fs.existsSync(csvFilePath)) {
                 const csvData = [];
                 fs.createReadStream(csvFilePath)
@@ -164,26 +164,36 @@ fs.readdir('./rug-detections/', (err, files) => {
                         }
 
                         const rankData = {
-                            tokenMintAddress: tokenData.tokenMintAddress,
+                            mint_address: tokenData.mint_address,
                             rank: rank,
                             solanaLiquidity,
                             usdLiquidity
                         };
 
-                        const outputFilePath = path.join('./rankings/', `${tokenData.tokenMintAddress}_rank.json`);
+                        const outputFilePath = path.join('./rankings/', `${tokenData.mint_address}_rank.json`);
                         try {
                             fs.writeFileSync(outputFilePath, JSON.stringify(rankData, null, 2));
-                            console.log(`Processed ${tokenData.tokenMintAddress} and assigned rank ${rank}`);
+                            console.log(`Processed ${tokenData.mint_address} and assigned rank ${rank}`);
                             console.log();
                         } catch (error) {
-                            console.error(`Error saving rank file for ${tokenData.tokenMintAddress}:`, error);
+                            console.error(`Error saving rank file for ${tokenData.mint_address}:`, error);
                         }
                     });
             } else {
-                console.error(`CSV file for ${tokenData.tokenMintAddress} not found.`);
+                console.error(`CSV file for ${tokenData.mint_address} not found.`);
             }
         }
     });
 });
 
-rugDetector('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr');
+// rugDetector('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr');
+// Get the mint address from command-line arguments
+const mint_address = process.argv[2];
+
+if (!mint_address) {
+    console.error('No mint address provided.');
+    process.exit(1);
+}
+
+// Run the function with the given mint address
+rugDetector(mint_address);

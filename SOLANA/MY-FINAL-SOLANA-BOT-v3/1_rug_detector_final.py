@@ -4,6 +4,7 @@ import requests
 import datetime
 from dotenv import load_dotenv
 from colorama import init, Fore
+import sys
 
 # Initialize colorama for colored output
 init(autoreset=True)
@@ -19,15 +20,15 @@ output_directory = "rug-detections"
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
 
-def get_solana_token_data(token_address):
+def get_solana_token_data(mint_address):
     # Skip tokens starting with "So1" (often Solana native tokens)
-    if token_address.startswith("So1"):
-        print(Fore.RED + f"Skipping token with address starting with 'So1': {token_address}")
+    if mint_address.startswith("So1"):
+        print(Fore.RED + f"Skipping token with address starting with 'So1': {mint_address}")
         return
 
     try:
         # Make an API request to Dexscreener for the provided Solana token address
-        response = requests.get(f'{dexscreener_api_endpoint}/{token_address}')
+        response = requests.get(f'{dexscreener_api_endpoint}/{mint_address}')
         response.raise_for_status()  # Raise an exception for HTTP errors
         token_data = response.json()
 
@@ -37,7 +38,7 @@ def get_solana_token_data(token_address):
         # Check if token data and pairs exist
         if token_data and 'pairs' in token_data and token_data['pairs']:
             print(Fore.WHITE + '-' * 50)
-            print(Fore.CYAN + f"\n  TOKEN ADDRESS: {token_address}")  # Print token address
+            print(Fore.CYAN + f"\n  TOKEN ADDRESS: {mint_address}")  # Print token address
             
             # Get the first pair only
             pair = token_data['pairs'][0]
@@ -79,7 +80,7 @@ def get_solana_token_data(token_address):
             #     print(Fore.RED + f"Warning: Significant price drop ({price_change_24h}%) in the last 24h.")
 
             # Save the data to a CSV file named after the token address
-            csv_file_path = os.path.join(output_directory, f"{token_address}.csv")
+            csv_file_path = os.path.join(output_directory, f"{mint_address}.csv")
             with open(csv_file_path, mode='w', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow(['Token Name', 'Token Symbol', 'Quote Token Name', 'Quote Token Symbol', 'Price (USD)', 'Solana Liquidity', 'Quote Liquidity', 'USD Liquidity', 'Timestamp'])
@@ -89,10 +90,19 @@ def get_solana_token_data(token_address):
 
         else:
             print(Fore.WHITE + '-' * 50)
-            print(Fore.RED + f"\nNo liquidity pairs found for: {token_address}\n")
+            print(Fore.RED + f"\nNo liquidity pairs found for: {mint_address}\n")
     
     except requests.exceptions.RequestException as e:
-        print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+        print(Fore.RED + f"Error fetching liquidity data for Solana token address: {mint_address}: {e}")
 
 
-get_solana_token_data('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr')
+# get_solana_token_data('7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr')
+# Get the mint address from command-line arguments
+if len(sys.argv) < 2:
+    print("No mint address provided.")
+    sys.exit(1)
+
+mint_address = sys.argv[1]
+
+# Run the function with the given mint address
+get_solana_token_data(mint_address)
