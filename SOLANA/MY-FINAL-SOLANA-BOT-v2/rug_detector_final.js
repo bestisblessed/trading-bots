@@ -114,10 +114,10 @@ async function rankTokens(tokenData) {
 
     let rank = 0;
 
-    // Apply ranking rules
-    if (tokenData.liquidity < 999) {
-        rank = 1;
-    }
+    // // Apply ranking rules
+    // if (tokenData.liquidity < 999) {
+    //     rank = 1;
+    // }
 
     if (tokenData.mintAuthority !== 'None' || tokenData.freezeAuthority !== 'None') {
         rank = 1;
