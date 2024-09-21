@@ -11,6 +11,7 @@ console.log('');
 
 async function rugDetector(mint_address) {
     const csvFilePath = path.join(__dirname, 'rug-detections', `${mint_address}.csv`);
+    console.log("Using csv path: ", csvFilePath);
     let liquidityUsd = 0;
 
     if (fs.existsSync(csvFilePath)) {
@@ -29,7 +30,7 @@ async function rugDetector(mint_address) {
                 .on('error', reject);
         });
     } else {
-        console.error(`CSV file for ${mint_address} not found.`);
+        console.error(`CSV file for ${mint_address} not found. Trying to rug detect.`);
         return; // Exit if the CSV file doesn't exist
     }
 
@@ -112,6 +113,7 @@ fs.readdir('./rug-detections/', (err, files) => {
     files.forEach(file => {
         if (file.endsWith('.json')) {
             const filePath = path.join('./rug-detections/', file);
+            console.log("Using json file path: ", filePath);
             const tokenData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
             // Find the corresponding CSV file with the liquidity values
@@ -180,7 +182,7 @@ fs.readdir('./rug-detections/', (err, files) => {
                         }
                     });
             } else {
-                console.error(`CSV file for ${tokenData.mint_address} not found.`);
+                console.error(`CSV file for ${tokenData.mint_address} not found. Trying to generate rankings.`);
             }
         }
     });
@@ -196,4 +198,5 @@ if (!mint_address) {
 }
 
 // Run the function with the given mint address
+console.log("Using token address: ", mint_address);
 rugDetector(mint_address);

@@ -137,10 +137,11 @@ async function fetchRaydiumAccounts(txId, connection) {
     //         console.log(stdout);
     //         console.log('2_rug_detector_final.js executed successfully.');
 
-    console.log('Using token: ', token_address)
+    console.log('Passing token address: ', token_address)
 
     // Execute the Python script with the mint address
-    exec(`python 1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
+    // exec(`python ./1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
+    exec(`/Users/tylerdurette/.pyenv/shims/python ./1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing Python script: ${error.message}`);
             return;
@@ -155,7 +156,7 @@ async function fetchRaydiumAccounts(txId, connection) {
         console.log('1_rug_detector_final.py executed successfully.');
 
         // After the Python script finishes, execute the 2_rug_detector_final.js script with the same mint address
-        exec(`node 2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
+        exec(`node ./2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error executing 2_rug_detector_final.js: ${error.message}`);
                 return;

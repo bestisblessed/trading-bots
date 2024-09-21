@@ -5,6 +5,7 @@ import datetime
 from dotenv import load_dotenv
 from colorama import init, Fore
 import sys
+import time
 
 # Initialize colorama for colored output
 init(autoreset=True)
@@ -81,6 +82,8 @@ def get_solana_token_data(mint_address):
 
             # Save the data to a CSV file named after the token address
             csv_file_path = os.path.join(output_directory, f"{mint_address}.csv")
+            # csv_file_path = (f"./rug-detections/{mint_address}.csv")
+            print(csv_file_path)
             with open(csv_file_path, mode='w', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow(['Token Name', 'Token Symbol', 'Quote Token Name', 'Quote Token Symbol', 'Price (USD)', 'Solana Liquidity', 'Quote Liquidity', 'USD Liquidity', 'Timestamp'])
@@ -105,4 +108,6 @@ if len(sys.argv) < 2:
 mint_address = sys.argv[1]
 
 # Run the function with the given mint address
+print("Using token address: ", mint_address)
+time.sleep(5)
 get_solana_token_data(mint_address)
