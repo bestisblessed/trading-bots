@@ -124,7 +124,6 @@ async function fetchRaydiumAccounts(txId, connection) {
 
 //     });
 // }
-
     // Execute the Python script after saving the data
     exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
         if (error) {
@@ -157,5 +156,24 @@ async function fetchRaydiumAccounts(txId, connection) {
         });
     });
 }
+// Adding another script
+//         // After 2_rug_detector_final.js finishes, execute the 3_rug_detector_final.js script
+//         exec('node 3_rug_detector_final.js', (error, stdout, stderr) => {
+//             if (error) {
+//                 console.error(`Error executing 3_rug_detector_final.js: ${error.message}`);
+//                 return;
+//             }
+
+//             if (stderr) {
+//                 console.error(stderr);
+//                 return;
+//             }
+
+//             console.log(stdout);
+//             console.log('3_rug_detector_final.js executed successfully.');
+//         });
+//     });
+// });
+
 
 main(connection, raydium).catch(console.error);
