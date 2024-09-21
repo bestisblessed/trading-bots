@@ -40,102 +40,198 @@ async function main(connection, programAddress) {
     );
 }
 
-// Parse transaction and filter data
-async function fetchRaydiumAccounts(txId, connection) {
-    const tx = await connection.getParsedTransaction(
-        txId,
-        {
-            maxSupportedTransactionVersion: 0,
-            commitment: 'confirmed'
-        });
+// // Parse transaction and filter data
+// async function fetchRaydiumAccounts(txId, connection) {
+//     const tx = await connection.getParsedTransaction(
+//         txId,
+//         {
+//             maxSupportedTransactionVersion: 0,
+//             commitment: 'confirmed'
+//         });
 
-    credits += 100;
+//     credits += 100;
 
-    // const accounts = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8').accounts;
-    // if (!accounts) {
-    //     console.log("No accounts found in the transaction.");
-    //     return;
-    // }
+//     // const accounts = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8').accounts;
+//     // if (!accounts) {
+//     //     console.log("No accounts found in the transaction.");
+//     //     return;
+//     // }
 
-    // Extract the instruction
-    const instruction = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
+//     // Extract the instruction
+//     const instruction = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
 
-    // Safely access accounts
-    const accounts = instruction?.accounts;
+//     // Safely access accounts
+//     const accounts = instruction?.accounts;
 
-    if (!accounts) {
-        console.log("No accounts found in the transaction.");
-        return;
-    }
+//     if (!accounts) {
+//         console.log("No accounts found in the transaction.");
+//         return;
+//     }
 
-    const tokenAIndex = 8;
-    const tokenBIndex = 9;
+//     const tokenAIndex = 8;
+//     const tokenBIndex = 9;
 
-    const tokenAAccount = accounts[tokenAIndex];
-    const tokenBAccount = accounts[tokenBIndex];
+//     const tokenAAccount = accounts[tokenAIndex];
+//     const tokenBAccount = accounts[tokenBIndex];
 
-    const tokenAAddress = tokenAAccount.toBase58();
-    const tokenBAddress = tokenBAccount.toBase58();
+//     const tokenAAddress = tokenAAccount.toBase58();
+//     const tokenBAddress = tokenBAccount.toBase58();
 
-    const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
+//     const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
 
-    // Check if the token has already been processed
-    const newFileName = `${token_address}.json`;
-    const newFilePath = path.join(directory, newFileName);
+//     // Check if the token has already been processed
+//     const newFileName = `${token_address}.json`;
+//     const newFilePath = path.join(directory, newFileName);
 
-    if (fs.existsSync(newFilePath)) {
-        console.log(`Token ${token_address} has already been processed. Skipping.`);
-        return;
-    }
+//     if (fs.existsSync(newFilePath)) {
+//         console.log(`Token ${token_address} has already been processed. Skipping.`);
+//         return;
+//     }
 
-    console.log(`Final Token Account Public Key: ${token_address}`);
+//     console.log(`Final Token Account Public Key: ${token_address}`);
 
-    // Prepare the data to be saved
-    const dataToSave = {
-        tokenAAddress,
-        tokenBAddress
-    };
+//     // Prepare the data to be saved
+//     const dataToSave = {
+//         tokenAAddress,
+//         tokenBAddress
+//     };
 
-    // Save the data to the new file
-    fs.writeFileSync(newFilePath, JSON.stringify(dataToSave, null, 2));
-    console.log(`Data saved to file: ${newFilePath}`);
+//     // Save the data to the new file
+//     fs.writeFileSync(newFilePath, JSON.stringify(dataToSave, null, 2));
+//     console.log(`Data saved to file: ${newFilePath}`);
 
-//     // // Add the token address to the queue
-//     // transactionQueue.push(token_address);
-//     // processQueue();
+// //     // // Add the token address to the queue
+// //     // transactionQueue.push(token_address);
+// //     // processQueue();
 
-//     // Execute rug_detector_final.js with the token_address
-//     const command = `node rug_detector_final.js ${token_address}`;
-//     exec(command, (error, stdout, stderr) => {
-//         if (error) {
-//             console.error(`Error executing rug_detector_final.js: ${error}`);
-//             return;
-//         }
-//         if (stderr) {
-//             console.error(`Error output from rug_detector_final.js: ${stderr}`);
-//         }
-//         console.log(`rug_detector_final.js output:\n${stdout}`);
-//     });
+// //     // Execute rug_detector_final.js with the token_address
+// //     const command = `node rug_detector_final.js ${token_address}`;
+// //     exec(command, (error, stdout, stderr) => {
+// //         if (error) {
+// //             console.error(`Error executing rug_detector_final.js: ${error}`);
+// //             return;
+// //         }
+// //         if (stderr) {
+// //             console.error(`Error output from rug_detector_final.js: ${stderr}`);
+// //         }
+// //         console.log(`rug_detector_final.js output:\n${stdout}`);
+// //     });
 
+// // }
+
+
+//     // Add a 60-second (60000 ms) delay before running rug_detector
+//     const delayInMilliseconds = 30000; // 60 seconds
+//     setTimeout(() => {
+//         // Execute rug_detector_final.js with the token_address after 60 seconds
+//         const command = `node rug_detector_final.js ${token_address}`;
+//         exec(command, (error, stdout, stderr) => {
+//             if (error) {
+//                 console.error(`Error executing rug_detector_final.js: ${error}`);
+//                 return;
+//             }
+//             if (stderr) {
+//                 console.error(`Error output from rug_detector_final.js: ${stderr}`);
+//             }
+//             console.log(`rug_detector_final.js output:\n${stdout}`);
+//         });
+//     }, delayInMilliseconds);
 // }
+// Function to wait for a specified time (ms)
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+// Enhanced fetchRaydiumAccounts with retry logic
+async function fetchRaydiumAccounts(txId, connection, retries = 5) {
+    let attempts = 0;
+    const maxRetries = retries;
+    let delay = 500; // Start with a 500ms delay for backoff
 
-    // Add a 60-second (60000 ms) delay before running rug_detector
-    const delayInMilliseconds = 30000; // 60 seconds
-    setTimeout(() => {
-        // Execute rug_detector_final.js with the token_address after 60 seconds
-        const command = `node rug_detector_final.js ${token_address}`;
-        exec(command, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error executing rug_detector_final.js: ${error}`);
+    while (attempts < maxRetries) {
+        try {
+            // Try fetching the transaction
+            const tx = await connection.getParsedTransaction(
+                txId,
+                {
+                    maxSupportedTransactionVersion: 0,
+                    commitment: 'confirmed'
+                });
+
+            credits += 100;
+
+            const instruction = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
+            const accounts = instruction?.accounts;
+
+            if (!accounts) {
+                console.log("No accounts found in the transaction.");
                 return;
             }
-            if (stderr) {
-                console.error(`Error output from rug_detector_final.js: ${stderr}`);
+
+            const tokenAIndex = 8;
+            const tokenBIndex = 9;
+
+            const tokenAAccount = accounts[tokenAIndex];
+            const tokenBAccount = accounts[tokenBIndex];
+
+            const tokenAAddress = tokenAAccount.toBase58();
+            const tokenBAddress = tokenBAccount.toBase58();
+
+            const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
+
+            const newFileName = `${token_address}.json`;
+            const newFilePath = path.join(directory, newFileName);
+
+            if (fs.existsSync(newFilePath)) {
+                console.log(`Token ${token_address} has already been processed. Skipping.`);
+                return;
             }
-            console.log(`rug_detector_final.js output:\n${stdout}`);
-        });
-    }, delayInMilliseconds);
+
+            console.log(`Final Token Account Public Key: ${token_address}`);
+
+            const dataToSave = {
+                tokenAAddress,
+                tokenBAddress
+            };
+
+            fs.writeFileSync(newFilePath, JSON.stringify(dataToSave, null, 2));
+            console.log(`Data saved to file: ${newFilePath}`);
+
+            const delayInMilliseconds = 30000; // 30 seconds
+            setTimeout(() => {
+                const command = `node rug_detector_final.js ${token_address}`;
+                exec(command, (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Error executing rug_detector_final.js: ${error}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.error(`Error output from rug_detector_final.js: ${stderr}`);
+                    }
+                    console.log(`rug_detector_final.js output:\n${stdout}`);
+                });
+            }, delayInMilliseconds);
+
+            break; // Break out of the retry loop on success
+
+        } catch (error) {
+            if (error.message.includes('429')) {
+                // Handle rate-limiting (Too Many Requests)
+                attempts++;
+                console.log(`Server responded with 429 Too Many Requests. Retrying after ${delay}ms...`);
+                await sleep(delay); // Wait before retrying
+                delay *= 2; // Exponential backoff
+            } else {
+                // For any other errors, log them and exit the loop
+                console.error(`Error fetching transaction: ${error}`);
+                return;
+            }
+        }
+    }
+
+    if (attempts >= maxRetries) {
+        console.error(`Max retries reached. Failed to fetch transaction for txId: ${txId}`);
+    }
 }
 
 main(connection, raydium).catch(console.error);
