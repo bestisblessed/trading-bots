@@ -107,20 +107,54 @@ async function fetchRaydiumAccounts(txId, connection) {
 
     console.log(`Data saved to file: ${newFilePath}`);
 
+//     // Execute the Python script after saving the data
+//     exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
+//         if (error) {
+//             console.error(`Error executing Python script: ${error.message}`);
+//             return;
+//         }
+
+//         if (stderr) {
+//             console.error(`Python script stderr: ${stderr}`);
+//             return;
+//         }
+//         // console.log(`Python script output: ${stdout}`);
+//         console.log(stdout);
+
+
+//     });
+// }
+
     // Execute the Python script after saving the data
-    exec('python rug_detector_final.py', (error, stdout, stderr) => {
-//    exec('python test.py', (error, stdout, stderr) => {
+    exec('python 1_rug_detector_final.py', (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing Python script: ${error.message}`);
             return;
         }
 
         if (stderr) {
-            console.error(`Python script stderr: ${stderr}`);
+            console.error(stderr);
             return;
         }
-        // console.log(`Python script output: ${stdout}`);
+        
         console.log(stdout);
+        console.log('1_rug_detector_final.py executed successfully.');
+
+        // After the Python script finishes, execute the 2_rug_detector_final.js script
+        exec('node 2_rug_detector_final.js', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error executing JavaScript script: ${error.message}`);
+                return;
+            }
+
+            if (stderr) {
+                console.error(stderr);
+                return;
+            }
+
+            console.log(stdout);
+            console.log('2_rug_detector_final.js executed successfully.');
+        });
     });
 }
 
