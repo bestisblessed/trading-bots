@@ -1,0 +1,49 @@
+{
+  "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+  "tokenType": "",
+  "risks": [
+    {
+      "name": "Top 10 holders high ownership",
+      "value": "",
+      "description": "The top 10 users hold more than 70% token supply",
+      "score": 10062,
+      "level": "danger"
+    },
+    {
+      "name": "Single holder ownership",
+      "value": "97.47%",
+      "description": "One user holds a large amount of the token supply",
+      "score": 9746,
+      "level": "danger"
+    },
+    {
+      "name": "Low Liquidity",
+      "value": "$45.90",
+      "description": "Low amount of liquidity in the token pool",
+      "score": 5908,
+      "level": "danger"
+    },
+    {
+      "name": "High ownership",
+      "value": "",
+      "description": "The top users hold more than 80% token supply",
+      "score": 1496,
+      "level": "danger"
+    },
+    {
+      "name": "Low amount of LP Providers",
+      "value": "",
+      "description": "Only a few users are providing liquidity",
+      "score": 500,
+      "level": "warn"
+    },
+    {
+      "name": "Mutable metadata",
+      "value": "",
+      "description": "Token metadata can be changed by the owner",
+      "score": 100,
+      "level": "warn"
+    }
+  ],
+  "score": 27812
+}
