@@ -143,9 +143,9 @@ for token_address, token_info in buy_prices.items():
 
             # Print profit/loss with colors
             if profit_loss_percent >= 0:
-                print(Fore.GREEN + f"{token_info['symbol']}, Profit: {profit_loss_percent}%")
+                print(Fore.GREEN + f"{token_info['symbol']} {profit_loss_percent}%")
             else:
-                print(Fore.RED + f"{token_info['symbol']}, Loss: {profit_loss_percent}%")
+                print(Fore.RED + f"{token_info['symbol']} {profit_loss_percent}%")
 
             # Check if we should trigger sell_50, sell_75, or sell_90
             if profit_loss_percent >= 90 and not token_info.get('sell_90', False):
