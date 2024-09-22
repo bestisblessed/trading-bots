@@ -1,46 +1,4 @@
-Here’s a simple README for your bot:
-
----
-
 # Solana Token Bot
-
-This bot allows you to detect and rank tokens using the Solana blockchain, trigger specific actions like buying tokens based on rankings, and analyze token liquidity.
-
-## Running the Bot
-
-To run the bot, follow these steps:
-
-1. **Install Node.js**  
-   Make sure you have Node.js installed on your system. You can download and install it from [Node.js official site](https://nodejs.org).
-
-2. **Install Python**  
-   Make sure you have Python 3 installed on your system. You can download and install it from [Python official site](https://www.python.org).
-
-3. **Install Dependencies**
-   - Install required Python libraries using `pip`:
-     ```
-     pip install -r requirements.txt
-     ```
-   - Install Node.js packages (if any are required):
-     ```
-     npm install
-     ```
-
-4. **Configure Environment Variables**  
-   Create a `.env` file in the project directory with the following environment variables:
-   ```
-   MY_BOT_KEY=<your-private-key>
-   MY_BOT_WALLET_ADDRESS=<your-wallet-address>
-   MORALIS_API_KEY=<your-moralis-api-key>
-   ```
-
-5. **Run the Bot**  
-   Run the bot using the `SCANNER.js` script:
-   ```
-   node SCANNER.js
-   ```
-
----
 
 ## Script Overview
 
@@ -67,7 +25,7 @@ Here is a list of each script, what it does, and the files it reads or creates:
    - **Creates:** Buy transaction results, logs in the console, updates JSON files.
 
 - **sell_token.py**  
-   - Sells a portion of tokens from the portfolio.
+   - Sells 50% portion of tokens from the portfolio.
    - **Reads:** Token balance JSON from `./wallets/`.
    - **Creates:** Swap transaction results, logs.
 
@@ -75,11 +33,6 @@ Here is a list of each script, what it does, and the files it reads or creates:
    - Monitors the wallet and logs token buy prices.
    - **Reads:** Wallet balances, token data via API.
    - **Creates:** JSON files in `./data/`.
-
-- **check_wallet_and_log_buy_prices.py**  
-   - Fetches wallet data and logs prices of tokens in the portfolio.
-   - **Reads:** Solana wallet, token data.
-   - **Creates:** Buy prices log in `./data/buy_prices.json`.
 
 ---
 
