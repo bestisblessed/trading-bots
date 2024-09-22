@@ -99,94 +99,86 @@ async function rugDetector(mint_address) {
         console.error(`Error saving file: ${error}`);
     }
 
-    // Ranking logic - can be added at the end of the file
+    // Ranking logic - process only the new token's ranking
     if (!fs.existsSync('./rankings/')) {
         fs.mkdirSync('./rankings/');
     }
 
-    fs.readdir('./rug-detections/', (err, files) => {
-        if (err) {
-            return console.error('Error reading directory:', err);
+    // Process ranking for the specific mint_address
+    const rankingFilePath = path.join('./rug-detections/', `${mint_address}.json`);
+    console.log("Using json file path: ", rankingFilePath);
+
+    if (fs.existsSync(rankingFilePath)) {
+        const tokenData = JSON.parse(fs.readFileSync(rankingFilePath, 'utf8'));
+
+        // Find the corresponding CSV file with the liquidity values
+        const csvRankingFilePath = path.join('./rug-detections/', `${mint_address}.csv`);
+        if (fs.existsSync(csvRankingFilePath)) {
+            const csvData = [];
+            fs.createReadStream(csvRankingFilePath)
+                .pipe(csv())
+                .on('data', (row) => {
+                    csvData.push(row);
+                })
+                .on('end', () => {
+                    // Extract liquidity and other values from the first row of CSV
+                    const solanaLiquidity = parseFloat(csvData[0]['Solana Liquidity']);
+                    const usdLiquidity = parseFloat(csvData[0]['USD Liquidity']);
+                    
+                    let rank = 0;
+
+                    // Apply ranking rules with the liquidity data from the CSV
+                    if (usdLiquidity < 999) {
+                        rank = 1;
+                    }
+
+                    if (tokenData.mintAuthority !== 'None' || tokenData.freezeAuthority !== 'None') {
+                        rank = 1;
+                    }
+
+                    if (usdLiquidity > 10000 && tokenData.ownershipRenounced) {
+                        rank = 3;
+                    }
+
+                    if (usdLiquidity > 10000 &&
+                        tokenData.ownershipRenounced &&
+                        tokenData.mintAuthority === 'None' &&
+                        tokenData.freezeAuthority === 'None') {
+                        rank = 4;
+                    }
+
+                    if (usdLiquidity > 10000 &&
+                        tokenData.ownershipRenounced &&
+                        tokenData.mintAuthority === 'None' &&
+                        tokenData.freezeAuthority === 'None' &&
+                        tokenData.largestHolderPercentage < 50) {
+                        rank = 5;
+                    }
+
+                    // Assign a default score if no rules matched
+                    if (rank === 0) {
+                        rank = 2;  // or any other value you consider appropriate for unmatched tokens
+                    }
+
+                    const rankData = {
+                        mint_address: tokenData.mint_address,
+                        rank: rank
+                    };
+
+                    const outputFilePath = path.join('./rankings/', `${tokenData.mint_address}_rank.json`);
+                    try {
+                        fs.writeFileSync(outputFilePath, JSON.stringify(rankData, null, 2));
+                        console.log(`Processed ${tokenData.mint_address} and assigned rank ${rank}`);
+                    } catch (error) {
+                        console.error(`Error saving rank file for ${tokenData.mint_address}:`, error);
+                    }
+                });
+        } else {
+            console.error(`CSV file for ${mint_address} not found. Trying to generate rankings.`);
         }
-
-        files.forEach(file => {
-            if (file.endsWith('.json')) {
-                const filePath = path.join('./rug-detections/', file);
-                console.log("Using json file path: ", filePath);
-                const tokenData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-                // Find the corresponding CSV file with the liquidity values
-                const csvFilePath = path.join('./rug-detections/', `${tokenData.mint_address}.csv`);
-                if (fs.existsSync(csvFilePath)) {
-                    const csvData = [];
-                    fs.createReadStream(csvFilePath)
-                        .pipe(csv())
-                        .on('data', (row) => {
-                            csvData.push(row);
-                        })
-                        .on('end', () => {
-                            // Extract liquidity and other values from the first row of CSV
-                            const solanaLiquidity = parseFloat(csvData[0]['Solana Liquidity']);
-                            const usdLiquidity = parseFloat(csvData[0]['USD Liquidity']);
-                            
-                            let rank = 0;
-
-                            // Apply ranking rules with the liquidity data from the CSV
-                            if (usdLiquidity < 999) {
-                                rank = 1;
-                            }
-
-                            if (tokenData.mintAuthority !== 'None' || tokenData.freezeAuthority !== 'None') {
-                                rank = 1;
-                            }
-
-                            if (usdLiquidity > 10000 && tokenData.ownershipRenounced) {
-                                rank = 3;
-                            }
-
-                            if (usdLiquidity > 10000 &&
-                                tokenData.ownershipRenounced &&
-                                tokenData.mintAuthority === 'None' &&
-                                tokenData.freezeAuthority === 'None') {
-                                rank = 4;
-                            }
-
-                            if (usdLiquidity > 10000 &&
-                                tokenData.ownershipRenounced &&
-                                tokenData.mintAuthority === 'None' &&
-                                tokenData.freezeAuthority === 'None' &&
-                                tokenData.largestHolderPercentage < 50) {
-                                rank = 5;
-                            }
-
-                            // Assign a default score if no rules matched
-                            if (rank === 0) {
-                                rank = 2;  // or any other value you consider appropriate for unmatched tokens
-                            }
-
-                            const rankData = {
-                                mint_address: tokenData.mint_address,
-                                rank: rank,
-                                // solanaLiquidity,
-                                // usdLiquidity
-                            };
-
-                            const outputFilePath = path.join('./rankings/', `${tokenData.mint_address}_rank.json`);
-                            try {
-                                fs.writeFileSync(outputFilePath, JSON.stringify(rankData, null, 2));
-                                console.log(`Processed ${tokenData.mint_address} and assigned rank ${rank}`);
-                                console.log();
-                            } catch (error) {
-                                console.error(`Error saving rank file for ${tokenData.mint_address}:`, error);
-                            }
-                        });
-                } else {
-                    console.error(`CSV file for ${tokenData.mint_address} not found. Trying to generate rankings.`);
-                }
-            }
-        });
-    });
-
+    } else {
+        console.error(`JSON file for ${mint_address} not found.`);
+    }
 }
 
 // Get the mint address from command-line arguments

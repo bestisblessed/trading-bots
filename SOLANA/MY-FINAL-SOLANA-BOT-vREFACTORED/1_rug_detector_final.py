@@ -7,6 +7,7 @@ from colorama import init, Fore
 import sys
 import time
 import subprocess
+import json
 
 # Initialize colorama for colored output
 init(autoreset=True)
@@ -114,7 +115,7 @@ mint_address = sys.argv[1]
 
 # Run the function with the given mint address
 print("Using token address: ", mint_address)
-time.sleep(3)
+time.sleep(10)
 # get_solana_token_data(mint_address)
 liquidity_found = get_solana_token_data(mint_address)
 
@@ -139,3 +140,38 @@ if liquidity_found:
 else:
     print(f"BAD TOKEN: Skipping 2_rug_detector_final.js execution.")
     # pass
+
+
+### ADD LOGIC HERE TO BUY NEW TOKEN IF SCORE IS GOOD ###
+script_dir = os.path.dirname(os.path.abspath(__file__))
+rankings_dir = os.path.join(script_dir, 'rankings')
+rankings_file_path = os.path.join(rankings_dir, f"{mint_address}_rank.json")
+
+# Check if the rankings file exists
+if os.path.exists(rankings_file_path):
+    # Load the rankings data from the JSON file
+    with open(rankings_file_path, 'r') as f:
+        ranking_data = json.load(f)
+    
+    # Get the rank value
+    rank = ranking_data.get('rank')
+
+    # If rank is 3, 4, or 5, execute the buy_token.py script
+    if rank in [3, 4, 5]:
+        print(f"Token with mint address {mint_address} has a good rank: {rank}. Proceeding to buy.")
+        try:
+            # Execute the buy_token.py script with the mint address
+            buy_script_path = os.path.join(script_dir, 'buy_token.py')
+            subprocess.run(['python', buy_script_path, mint_address], check=True)
+            print(f"buy_token.py executed successfully for token: {mint_address}")
+
+            monitor_script_path = os.path.join(script_dir, 'monitor_wallet.py')
+            subprocess.run(['python', monitor_script_path, mint_address], check=True)
+            print(f"monitor_wallet.py executed successfully for token: {mint_address}")
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error executing buy_token.py: {e.stderr}")
+    else:
+        print(f"Token with mint address {mint_address} has rank: {rank}. No action taken.")
+else:
+    print(f"Rankings file not found for token {mint_address}. Skipping buy step.")
