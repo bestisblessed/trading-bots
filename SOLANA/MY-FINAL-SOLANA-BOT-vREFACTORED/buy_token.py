@@ -10,6 +10,10 @@ from solana.rpc.types import TxOpts
 from solana.rpc.commitment import Processed
 from dotenv import load_dotenv
 import sys
+from colorama import Fore, Style, init
+
+# Initialize colorama
+init(autoreset=True)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,7 +38,7 @@ params = {
     'inputMint': 'So11111111111111111111111111111111111111112',
     'outputMint': output_mint,
     'amount': str(int(0.002 * 10**9)), # Number of SOL to swap
-    'slippageBps': '300'  # 3% slippage
+    'slippageBps': '500'  # 5% slippage
 }
 response = requests.get(url, params=params)
 quoteResponse = response.json()
@@ -53,7 +57,13 @@ signature = sender.sign_message(message.to_bytes_versioned(raw_transaction.messa
 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature])
 opts = TxOpts(skip_preflight=False, preflight_commitment=Processed)
 result = client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
-result_raw_output = json.loads(result.to_json())
+# result_raw_output = json.loads(result.to_json())
 transaction_id = json.loads(result.to_json())['result']
-print(result_raw_output)
-print('Transaction ID: ', transaction_id)
+# print(result_raw_output)
+# print('Transaction ID: ', transaction_id)
+# Print in green, capital letters
+print('')
+print(Fore.GREEN + '-'*50 + 'BOUGHT TOKEN' + '-'*50)
+# print(Fore.GREEN + json.dumps(result_raw_output).upper())
+print(Fore.GREEN + 'TRANSACTION ID: ' + transaction_id)
+print('')
