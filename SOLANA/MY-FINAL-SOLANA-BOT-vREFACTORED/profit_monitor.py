@@ -104,7 +104,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # Set absolute paths for buy_prices.json and sell scripts
 buy_prices_file = os.path.join(script_dir, 'wallets', 'buy_prices.json')
 sell_token_50_path = os.path.join(script_dir, 'sell_token_50.py')
-sell_token_75_path = os.path.join(script_dir, 'sell_token_75.py')
+sell_token_80_path = os.path.join(script_dir, 'sell_token_80.py')
 sell_token_90_path = os.path.join(script_dir, 'sell_token_90.py')
 
 if not os.path.exists(buy_prices_file):
@@ -148,12 +148,12 @@ for token_address, token_info in buy_prices.items():
 
             # Check if we should trigger sell_50, sell_75, or sell_90
             if profit_loss_percent >= 90 and not token_info.get('sell_90', False):
-                trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "90%")
+                trigger_sell(token_address, 'sell_token_90.py', profit_loss_percent, "90%")
                 buy_prices[token_address]['sell_90'] = True
 
-            elif profit_loss_percent >= 75 and not token_info.get('sell_75', False):
-                trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "75%")
-                buy_prices[token_address]['sell_75'] = True
+            elif profit_loss_percent >= 80 and not token_info.get('sell_80', False):
+                trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "80%")
+                buy_prices[token_address]['sell_80'] = True
 
             elif profit_loss_percent >= 50 and not token_info.get('sell_50', False):
                 trigger_sell(token_address, 'sell_token.py', profit_loss_percent, "50%")
