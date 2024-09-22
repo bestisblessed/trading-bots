@@ -63,7 +63,7 @@ transaction_id = json.loads(result.to_json())['result']
 # print('Transaction ID: ', transaction_id)
 # Print in green, capital letters
 print('')
-print(Fore.GREEN + '-'*50 + 'BOUGHT TOKEN' + '-'*50)
+print(Fore.GREEN + '-'*40 + 'BOUGHT TOKEN' + '-'*40)
 # print(Fore.GREEN + json.dumps(result_raw_output).upper())
 print(Fore.GREEN + 'TRANSACTION ID: ' + transaction_id)
 print('')
