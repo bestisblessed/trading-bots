@@ -126,6 +126,7 @@ def trigger_sell(token_address, sell_script, profit_percent, threshold):
 
 # Monitor and calculate profits
 for token_address, token_info in buy_prices.items():
+    # print('')
     try:
         # Make API request to Dexscreener for the Solana token address
         response = requests.get(f'{dexscreener_api_endpoint}/{token_address}')
@@ -168,5 +169,5 @@ for token_address, token_info in buy_prices.items():
 # Save the updated buy_prices.json
 with open(buy_prices_file, 'w') as f:
     json.dump(buy_prices, f, indent=2)
-print(Fore.GREEN + "Updated buy_prices.json file with sell status")
+# print(Fore.GREEN + "Updated buy_prices.json file with sell status")
 
