@@ -165,9 +165,27 @@ if os.path.exists(rankings_file_path):
             subprocess.run(['python', buy_script_path, mint_address], check=True)
             print(f"buy_token.py executed successfully for token: {mint_address}")
 
-            monitor_script_path = os.path.join(script_dir, 'monitor_wallet.py')
+            monitor_script_path = os.path.join(script_dir, 'profit_monitor.py')
             subprocess.run(['python', monitor_script_path, mint_address], check=True)
-            print(f"monitor_wallet.py executed successfully for token: {mint_address}")
+            print(f"profit_monitor.py executed successfully for token: {mint_address}")
+
+            # pushover_script = os.path.join(script_dir, 'pushover.py')
+            # subprocess.run(['python', pushover_script], check=True)
+            # print(f"pushover.py executed successfully")
+
+            info_csv_file_path = os.path.join(output_directory, f"{mint_address}.csv")
+            with open(info_csv_file_path, mode='r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    new_token_symbol = row['Token Symbol']  # Access the token symbol by column name
+                    break  # Since there's only one row, break after the first iteration
+            USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
+            API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
+            message = f"BOUGHT TOKEN: {new_token_symbol}"
+            payload = {"message": message, "user": USER, "token": API}
+            r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
+            if not r.status_code == 200:
+                print(r.text)
 
         except subprocess.CalledProcessError as e:
             print(f"Error executing buy_token.py: {e.stderr}")
