@@ -165,9 +165,9 @@ if os.path.exists(rankings_file_path):
             subprocess.run(['python', buy_script_path, mint_address], check=True)
             print(f"buy_token.py executed successfully for token: {mint_address}")
 
-            monitor_script_path = os.path.join(script_dir, 'profit_monitor.py')
+            monitor_script_path = os.path.join(script_dir, 'monitor_wallet.py')
             subprocess.run(['python', monitor_script_path, mint_address], check=True)
-            print(f"profit_monitor.py executed successfully for token: {mint_address}")
+            print(f"monitor_wallet.py executed successfully for token: {mint_address}")
 
             # pushover_script = os.path.join(script_dir, 'pushover.py')
             # subprocess.run(['python', pushover_script], check=True)
