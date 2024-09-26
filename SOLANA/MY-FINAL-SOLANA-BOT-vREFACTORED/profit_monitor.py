@@ -41,9 +41,14 @@ with open(buy_prices_file, 'r') as f:
 dexscreener_api_endpoint = 'https://api.dexscreener.com/latest/dex/tokens'
 
 # Helper function to trigger the sell scripts
+# def trigger_sell(token_address, sell_script, profit_percent, threshold):
+#     print(Fore.YELLOW + f"PROFIT {profit_percent}%: Executing {sell_script} for {token_address}")
+#     script_path = os.path.join(os.getcwd(), sell_script)
+#     subprocess.run(['python', script_path, token_address], check=True)
+#     print(Fore.GREEN + f"{sell_script} executed successfully for {token_address} at {threshold}% profit")
 def trigger_sell(token_address, sell_script, profit_percent, threshold):
     print(Fore.YELLOW + f"PROFIT {profit_percent}%: Executing {sell_script} for {token_address}")
-    script_path = os.path.join(os.getcwd(), sell_script)
+    script_path = os.path.join(script_dir, sell_script)  # Ensure script_dir points to the correct directory
     subprocess.run(['python', script_path, token_address], check=True)
     print(Fore.GREEN + f"{sell_script} executed successfully for {token_address} at {threshold}% profit")
 
