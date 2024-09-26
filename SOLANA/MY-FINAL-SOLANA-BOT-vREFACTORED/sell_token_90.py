@@ -197,7 +197,7 @@ params = {
     'inputMint': mint_address,
     'outputMint': 'So11111111111111111111111111111111111111112',  # Converting to SOL
     'amount': sell_amount_raw,  # Sell 80% of tokens
-    'slippageBps': '400'  # 1% slippage
+    'slippageBps': '700'  # 1% slippage
 }
 
 try:
