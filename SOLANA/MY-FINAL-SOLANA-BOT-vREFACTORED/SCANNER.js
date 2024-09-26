@@ -141,7 +141,7 @@ async function fetchRaydiumAccounts(txId, connection) {
 
     // Execute the Python script with the mint address
     // exec(`python ./1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
-    exec(`/Users/tylerdurette/.pyenv/shims/python ./1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
+    exec(`/Users/neo/.pyenv/shims/python ./1_rug_detector_final.py ${token_address}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing Python script: ${error.message}`);
             return;
@@ -157,7 +157,7 @@ async function fetchRaydiumAccounts(txId, connection) {
 
         // After the Python script finishes, execute the 2_rug_detector_final.js script with the same mint address
         // exec(`node ./2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
-        // exec(`/Users/tylerdurette/.nvm/versions/node/v20.17.0/bin/node ./2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
+        // exec(`/Users/neo/.nvm/versions/node/v20.17.0/bin/node ./2_rug_detector_final.js ${token_address}`, (error, stdout, stderr) => {
         //     if (error) {
         //         console.error(`Error executing 2_rug_detector_final.js: ${error.message}`);
         //         return;
@@ -176,7 +176,7 @@ async function fetchRaydiumAccounts(txId, connection) {
 
 //     // Add a delay of 2 seconds (2000 milliseconds) before running the second script
 //     setTimeout(() => {
-//         exec(`/Users/tylerdurette/.nvm/versions/node/v20.17.0/bin/node ./2_rug_detector_final.js ${token_address}`, { cwd: __dirname }, (error, stdout, stderr) => {
+//         exec(`/Users/neo/.nvm/versions/node/v20.17.0/bin/node ./2_rug_detector_final.js ${token_address}`, { cwd: __dirname }, (error, stdout, stderr) => {
 //             if (error) {
 //                 console.error(`Error executing 2_rug_detector_final.js: ${error.message}`);
 //                 return;
