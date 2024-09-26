@@ -56,6 +56,14 @@ for token_address, token_info in buy_prices.items():
         response.raise_for_status()
         token_data = response.json()
 
+        # Initialize sell flags if they don't exist
+        if 'sell_50' not in token_info:
+            token_info['sell_50'] = False
+        if 'sell_80' not in token_info:
+            token_info['sell_80'] = False
+        if 'sell_90' not in token_info:
+            token_info['sell_90'] = False
+
         if token_data and 'pairs' in token_data and token_data['pairs']:
             current_price_usd = float(token_data['pairs'][0]['priceUsd'])
             buy_price_usd = float(token_info['price_usd'])
@@ -74,6 +82,7 @@ for token_address, token_info in buy_prices.items():
             if profit_loss_percent >= 90 and not token_info.get('sell_90', False):
                 trigger_sell(token_address, 'sell_token_90.py', profit_loss_percent, "90%")
                 buy_prices[token_address]['sell_90'] = True
+                token_info['sell_90'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
                 message = f"SOLD 90% TOKEN"
@@ -85,6 +94,7 @@ for token_address, token_info in buy_prices.items():
             elif profit_loss_percent >= 80 and not token_info.get('sell_80', False):
                 trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "80%")
                 buy_prices[token_address]['sell_80'] = True
+                token_info['sell_80'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
                 message = f"SOLD 80% TOKEN"
@@ -96,6 +106,7 @@ for token_address, token_info in buy_prices.items():
             elif profit_loss_percent >= 50 and not token_info.get('sell_50', False):
                 trigger_sell(token_address, 'sell_token.py', profit_loss_percent, "50%")
                 buy_prices[token_address]['sell_50'] = True
+                token_info['sell_50'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
                 message = f"SOLD 50% TOKEN"
