@@ -195,7 +195,7 @@ print(f"Token Symbol: {symbol}")
 
 # Calculate the sell amount
 sell_amount = float(balance) * 0.5
-print(f"Selling 90% of {symbol}: {sell_amount}")
+print(f"Selling 50% of {symbol}: {sell_amount}")
 
 # Convert to raw token amount
 sell_amount_raw = int(sell_amount * 10**decimals)
