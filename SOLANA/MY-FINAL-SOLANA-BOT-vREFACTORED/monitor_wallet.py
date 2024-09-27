@@ -44,7 +44,11 @@ result = sol_api.account.get_portfolio(api_key=api_key, params=params)
 tokens = result.get('tokens', [])
 
 # Ensure the data/ directory exists
-data_dir = 'wallets'
+# data_dir = 'wallets'
+# if not os.path.exists(data_dir):
+#     os.makedirs(data_dir)
+# Ensure the data directory exists
+data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'wallets'))
 if not os.path.exists(data_dir):
     os.makedirs(data_dir)
 
