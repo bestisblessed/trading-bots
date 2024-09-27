@@ -182,6 +182,7 @@ if os.path.exists(rankings_file_path):
     
     # Get the rank value
     rank = ranking_data.get('rank')
+    rugcheck_score = ranking_data.get('rugcheckxyz_1')
 
     # Load the token balances to check the rugcheckxyz_1 score
     with open(token_balances_file, 'r') as f:
@@ -191,8 +192,8 @@ if os.path.exists(rankings_file_path):
     token_info = next((token for token in token_balances if token['mint'] == mint_address), None)
 
     # Check if token_info exists and retrieve the rugcheckxyz_1 score
-    if token_info:
-        rugcheck_score = token_info.get('rugcheckxyz_1', 0)  # Default to 0 if not found
+#    if token_info:
+#        rugcheck_score = token_info.get('rugcheckxyz_1', 0)  # Default to 0 if not found
 
     # If rank is 3, 4, or 5, execute the buy_token.py script
     if rank in [3, 4, 5] and rugcheck_score < 10000:
