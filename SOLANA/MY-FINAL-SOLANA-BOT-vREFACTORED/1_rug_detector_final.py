@@ -141,11 +141,38 @@ else:
     print(f"BAD TOKEN: Skipping 2_rug_detector_final.js execution.")
     # pass
 
+### RUN RUGCHECKXYZ ###
+time.sleep(1)
+# After generating the CSV, call the JavaScript script
+if liquidity_found:
+    try:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        rug_script_path = os.path.join(script_dir, 'rugcheckxyz.py')
+        # Execute the Node.js script with the mint address
+        result = subprocess.run(
+            ['python', rug_script_path, mint_address],
+            capture_output=True,  # Capture output so we can print it
+            text=True,  # Decode stdout and stderr as text
+            check=True  # Raise an exception if the process fails
+        )
+        print(result.stdout)  # Print the standard output from the Node.js script
+        print('rugcheckxyz.py executed successfully.')
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing rugcheckxyz.py: {e.stderr}", file=sys.stderr)
+else:
+    print(f"BAD TOKEN: Skipping rugcheckxyz.py execution.")
+    # pass
+
 
 ### ADD LOGIC HERE TO BUY NEW TOKEN IF SCORE IS GOOD ###
 script_dir = os.path.dirname(os.path.abspath(__file__))
 rankings_dir = os.path.join(script_dir, 'rankings')
 rankings_file_path = os.path.join(rankings_dir, f"{mint_address}_rank.json")
+
+wallet_address = '7Qq8RTV2ZP3niS1xmrvDf5PemARSJamWk3gVbECP3yaE'
+
+# Load the token balances from the JSON file
+token_balances_file = os.path.join(script_dir, 'wallets', f"{wallet_address}_token_balances.json")
 
 # Check if the rankings file exists
 if os.path.exists(rankings_file_path):
@@ -156,8 +183,20 @@ if os.path.exists(rankings_file_path):
     # Get the rank value
     rank = ranking_data.get('rank')
 
+    # Load the token balances to check the rugcheckxyz_1 score
+    with open(token_balances_file, 'r') as f:
+        token_balances = json.load(f)
+
+    # Find the corresponding token in the balances
+    token_info = next((token for token in token_balances if token['mint'] == mint_address), None)
+
+    # Check if token_info exists and retrieve the rugcheckxyz_1 score
+    if token_info:
+        rugcheck_score = token_info.get('rugcheckxyz_1', 0)  # Default to 0 if not found
+
     # If rank is 3, 4, or 5, execute the buy_token.py script
-    if rank in [3, 4, 5]:
+    if rank in [3, 4, 5] and rugcheck_score < 10000:
+    # if rank in [3, 4, 5]:
         print(f"Token with mint address {mint_address} has a good rank: {rank}. Proceeding to buy.")
         try:
             # Execute the buy_token.py script with the mint address
