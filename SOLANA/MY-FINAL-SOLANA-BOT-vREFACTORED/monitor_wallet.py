@@ -49,8 +49,10 @@ if not os.path.exists(data_dir):
     os.makedirs(data_dir)
 
 # Define the path for the output file
-output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
-buy_prices_path = os.path.join(data_dir, 'buy_prices.json')
+# output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
+# buy_prices_path = os.path.join(data_dir, 'buy_prices.json')
+output_path = os.path.abspath(os.path.join(data_dir, f'{wallet_address}_token_balances.json'))
+buy_prices_path = os.path.abspath(os.path.join(data_dir, 'buy_prices.json'))
 
 # Save the current token balances to a JSON file
 with open(output_path, 'w') as f:
