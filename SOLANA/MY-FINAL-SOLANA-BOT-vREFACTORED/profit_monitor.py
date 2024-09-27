@@ -90,7 +90,6 @@ for token_address, token_info in buy_prices.items():
                 token_info['sell_90'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-                token_print = token_info['']
                 message = f"SOLD 90% of {token_info['symbol']} TOKEN"
                 payload = {"message": message, "user": USER, "token": API}
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
