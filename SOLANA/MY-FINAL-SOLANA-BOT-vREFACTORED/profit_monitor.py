@@ -107,6 +107,7 @@ for token_address, token_info in buy_prices.items():
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
                 if not r.status_code == 200:
                     print(r.text)
+                time.sleep(8)
 
             # if profit_loss_percent >= 90 and not token_info.get('sell_90', False):
             #     trigger_sell(token_address, 'sell_token_90.py', profit_loss_percent, "90%")
@@ -156,6 +157,7 @@ for token_address, token_info in buy_prices.items():
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
                 if not r.status_code == 200:
                     print(r.text)
+                time.sleep(8)
 
         else:
             print(Fore.RED + f"No valid price data found for token: {token_info['symbol']}")
