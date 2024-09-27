@@ -7,6 +7,51 @@ const path = require('path');
 console.log('');
 
 // Function to fetch liquidity from Dexscreener API
+// async function getLiquidityInfo(tokenMintAddress) {
+//     const apiUrl = `https://api.dexscreener.com/latest/dex/tokens/${tokenMintAddress}`;
+    
+//     try {
+//         const response = await axios.get(apiUrl);
+//         const data = response.data;
+
+//         if (data && data.pairs && data.pairs.length > 0) {
+//             // Get the first pair from the response
+//             const pair = data.pairs[0];
+//             const liquidityUsd = pair.liquidity ? pair.liquidity.usd : 0;
+//             return liquidityUsd;
+//         } else {
+//             console.log(`No liquidity information found for token ${tokenMintAddress}.`);
+//             return 0;
+//         }
+//     } catch (error) {
+//         console.error(`Error fetching liquidity info: ${error}`);
+//         return 0;
+//     }
+// }
+// async function getLiquidityInfo(tokenMintAddress) {
+//     const apiUrl = `https://api.dexscreener.com/latest/dex/tokens/${tokenMintAddress}`;
+    
+//     try {
+//         const response = await axios.get(apiUrl);
+//         const data = response.data;
+
+//         if (data && data.pairs && data.pairs.length > 0) {
+//             // Select the pair with the highest liquidity
+//             let highestLiquidityPool = data.pairs.reduce((prev, current) => {
+//                 return (prev.liquidity && prev.liquidity.usd > current.liquidity.usd) ? prev : current;
+//             });
+
+//             const liquidityUsd = highestLiquidityPool.liquidity ? highestLiquidityPool.liquidity.usd : 0;
+//             return liquidityUsd;
+//         } else {
+//             console.log(`No liquidity information found for token ${tokenMintAddress}.`);
+//             return 0;
+//         }
+//     } catch (error) {
+//         console.error(`Error fetching liquidity info: ${error}`);
+//         return 0;
+//     }
+// }
 async function getLiquidityInfo(tokenMintAddress) {
     const apiUrl = `https://api.dexscreener.com/latest/dex/tokens/${tokenMintAddress}`;
     
@@ -15,10 +60,31 @@ async function getLiquidityInfo(tokenMintAddress) {
         const data = response.data;
 
         if (data && data.pairs && data.pairs.length > 0) {
-            // Get the first pair from the response
-            const pair = data.pairs[0];
-            const liquidityUsd = pair.liquidity ? pair.liquidity.usd : 0;
-            return liquidityUsd;
+            console.log(`Found ${data.pairs.length} liquidity pools for token ${tokenMintAddress}:`);
+
+            data.pairs.forEach((pair, index) => {
+                const liquidityUsd = pair.liquidity ? pair.liquidity.usd : 0;
+                const exchange = pair.exchange ? pair.exchange : 'Unknown';
+                const pairInfo = pair.baseToken && pair.targetToken ? 
+                    `${pair.baseToken.symbol}/${pair.targetToken.symbol}` : 'Unknown Pair';
+                
+                console.log(`Pool ${index + 1}:`);
+                console.log(`  Pair: ${pairInfo}`);
+                console.log(`  Exchange: ${exchange}`);
+                console.log(`  Liquidity: $${liquidityUsd}`);
+                console.log(`  Price: $${pair.priceUsd}`);
+                console.log('');  // Empty line for better readability
+            });
+
+            // Optionally, return the highest liquidity pool
+            const highestLiquidityPool = data.pairs.reduce((prev, current) => {
+                return (prev.liquidity && prev.liquidity.usd > current.liquidity.usd) ? prev : current;
+            });
+
+            const highestLiquidityUsd = highestLiquidityPool.liquidity ? highestLiquidityPool.liquidity.usd : 0;
+            console.log(`Pool with highest liquidity: $${highestLiquidityUsd}`);
+            return highestLiquidityUsd;
+
         } else {
             console.log(`No liquidity information found for token ${tokenMintAddress}.`);
             return 0;
@@ -163,8 +229,8 @@ fs.readdir('./rug-detections/', (err, files) => {
     });
 });
 
-// Example usage
-rugDetector('FsuuJacQ1K5G7xfQf7dfhEKqtEK5enZKWXtpRuXfA5LC');
+// Example usage hardcoded
+// rugDetector('FsuuJacQ1K5G7xfQf7dfhEKqtEK5enZKWXtpRuXfA5LC');
 // rugDetector('Ag19bdRfrDU4WprGrbN8pJaEP3YbLvbuC9gsnaoJgFKz');
 // rugDetector('HidqA4SP1owM2FXGBuypJZxqr8VgoGkcXVZvEr6FZFgy');
 // rugDetector('BoFPxed7C7KRrpSovxTwjxE8HeiiyH9qY3kJGpnVRUaL');
