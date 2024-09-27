@@ -133,21 +133,8 @@ for token_address, token_info in buy_prices.items():
             #     if not r.status_code == 200:
             #         print(r.text)
 
-            # elif profit_loss_percent >= 50 and not token_info.get('sell_50', False):
-            #     trigger_sell(token_address, 'sell_token.py', profit_loss_percent, "50%")
-            #     buy_prices[token_address]['sell_50'] = True
-            #     token_info['sell_50'] = True
-            #     USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
-            #     API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-            #     message = f"SOLD 50% of {token_info['symbol']} TOKEN"
-            #     payload = {"message": message, "user": USER, "token": API}
-            #     r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
-            #     if not r.status_code == 200:
-            #         print(r.text)
-
-
             elif profit_loss_percent >= 100 and not token_info.get('sell_100', False):
-                trigger_sell(token_address, 'sell_token.py', profit_loss_percent, "100%")
+                trigger_sell(token_address, 'sell_token_100.py', profit_loss_percent, "100%")
                 buy_prices[token_address]['sell_100'] = True
                 token_info['sell_100'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
@@ -158,6 +145,19 @@ for token_address, token_info in buy_prices.items():
                 if not r.status_code == 200:
                     print(r.text)
                 time.sleep(8)
+
+            # elif profit_loss_percent >= 50 and not token_info.get('sell_50', False):
+            #     trigger_sell(token_address, 'sell_token_50.py', profit_loss_percent, "50%")
+            #     buy_prices[token_address]['sell_50'] = True
+            #     token_info['sell_50'] = True
+            #     USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
+            #     API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
+            #     message = f"SOLD {token_info['symbol']} 50% Profit - 50% of tokens"
+            #     payload = {"message": message, "user": USER, "token": API}
+            #     r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
+            #     if not r.status_code == 200:
+            #         print(r.text)
+            #     time.sleep(8)
 
         else:
             print(Fore.RED + f"No valid price data found for token: {token_info['symbol']}")
