@@ -209,6 +209,8 @@ params = {
     'slippageBps': '500'  # 1% slippage
 }
 
+time.sleep(2)
+
 try:
     # Fetch the quote for the swap
     response = requests.get(url, params=params)
