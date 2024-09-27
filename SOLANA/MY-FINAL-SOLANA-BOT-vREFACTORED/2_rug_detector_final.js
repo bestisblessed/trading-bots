@@ -9,6 +9,52 @@ const rankingsDir = './rankings/';
 
 console.log('');
 
+// Function to fetch liquidity from Dexscreener API and get the highest liquidity pool
+async function getHighestLiquidityInfo(tokenMintAddress) {
+    const apiUrl = `https://api.dexscreener.com/latest/dex/tokens/${tokenMintAddress}`;
+    
+    try {
+        const response = await axios.get(apiUrl);
+        const data = response.data;
+
+        if (data && data.pairs && data.pairs.length > 0) {
+            console.log(`Found ${data.pairs.length} liquidity pools for token ${tokenMintAddress}:`);
+
+            // Iterate and print all the liquidity pools
+            data.pairs.forEach((pair, index) => {
+                const liquidityUsd = pair.liquidity ? pair.liquidity.usd : 0;
+                const exchange = pair.exchange ? pair.exchange : 'Unknown';
+                const pairInfo = pair.baseToken && pair.targetToken ? 
+                    `${pair.baseToken.symbol}/${pair.targetToken.symbol}` : 'Unknown Pair';
+                
+                console.log(`Pool ${index + 1}:`);
+                console.log(`  Pair: ${pairInfo}`);
+                console.log(`  Exchange: ${exchange}`);
+                console.log(`  Liquidity: $${liquidityUsd}`);
+                console.log(`  Price: $${pair.priceUsd}`);
+                console.log('');  // Empty line for better readability
+            });
+
+            // Select the pool with the highest liquidity
+            let highestLiquidityPool = data.pairs.reduce((prev, current) => {
+                return (prev.liquidity && prev.liquidity.usd > current.liquidity.usd) ? prev : current;
+            });
+
+            const highestLiquidityUsd = highestLiquidityPool.liquidity ? highestLiquidityPool.liquidity.usd : 0;
+            console.log(`Pool with highest liquidity: $${highestLiquidityUsd}`);
+            return highestLiquidityUsd;
+        } else {
+            console.log(`No liquidity information found for token ${tokenMintAddress}.`);
+            return 0;
+        }
+    } catch (error) {
+        console.error(`Error fetching liquidity info: ${error}`);
+        return 0;
+    }
+}
+
+// console.log('');
+
 async function rugDetector(mint_address) {
     const csvFilePath = path.join(__dirname, 'rug-detections', `${mint_address}.csv`);
     console.log("Using csv path: ", csvFilePath);
@@ -29,10 +75,15 @@ async function rugDetector(mint_address) {
                 })
                 .on('error', reject);
         });
+    // } else {
+    //     console.error(`CSV file for ${mint_address} not found. Trying to rug detect.`);
+    //     return; // Exit if the CSV file doesn't exist
+    // }
     } else {
-        console.error(`CSV file for ${mint_address} not found. Trying to rug detect.`);
-        return; // Exit if the CSV file doesn't exist
+        console.error(`CSV file for ${mint_address} not found. Fetching highest liquidity information from Dexscreener.`);
+        liquidityUsd = await getHighestLiquidityInfo(mint_address); // Fetch liquidity from the Dexscreener API
     }
+    
 
     const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
     const mintPublicKey = new PublicKey(mint_address);
@@ -136,18 +187,18 @@ async function rugDetector(mint_address) {
                         rank = 1;
                     }
 
-                    if (usdLiquidity > 10000 && tokenData.ownershipRenounced) {
+                    if (usdLiquidity > 1000 && tokenData.ownershipRenounced) {
                         rank = 3;
                     }
 
-                    if (usdLiquidity > 10000 &&
+                    if (usdLiquidity > 1000 &&
                         tokenData.ownershipRenounced &&
                         tokenData.mintAuthority === 'None' &&
                         tokenData.freezeAuthority === 'None') {
                         rank = 4;
                     }
 
-                    if (usdLiquidity > 10000 &&
+                    if (usdLiquidity > 1000 &&
                         tokenData.ownershipRenounced &&
                         tokenData.mintAuthority === 'None' &&
                         tokenData.freezeAuthority === 'None' &&
