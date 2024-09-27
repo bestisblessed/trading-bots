@@ -20,7 +20,13 @@ from solana.rpc.core import RPCException
 init(autoreset=True)
 
 # Load environment variables from the .env file
-load_dotenv()
+# load_dotenv()
+
+# Get the absolute path to the .env file
+env_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '.env'))
+
+# Load environment variables from the .env file
+load_dotenv(env_file_path)
 
 # Check if the mint address argument is provided
 if len(sys.argv) < 2:
@@ -41,13 +47,15 @@ if not wallet_address:
     raise ValueError("MY_BOT_WALLET_ADDRESS not found in the .env file")
 
 # Ensure the data directory exists
-data_dir = 'wallets'
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir)
+# data_dir = 'wallets'
+# if not os.path.exists(data_dir):
+#     os.makedirs(data_dir)
 
-# Define file paths
+# # Define file paths
+# output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
+# # buy_prices_path = os.path.join(data_dir, 'buy_prices.json')
+data_dir = os.path.abspath('wallets')
 output_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
-# buy_prices_path = os.path.join(data_dir, 'buy_prices.json')
 
 # Fetch the portfolio balance using Moralis
 params = {
@@ -152,7 +160,8 @@ client = Client("https://api.mainnet-beta.solana.com")
 sender = Keypair.from_base58_string(private_key)
 
 # File path to token balances
-file_path = f'./wallets/{wallet_address}_token_balances.json'
+# file_path = f'./wallets/{wallet_address}_token_balances.json'
+file_path = os.path.join(data_dir, f'{wallet_address}_token_balances.json')
 
 # Load token balances from the file
 with open(file_path, 'r') as f:
