@@ -18,17 +18,25 @@ init(autoreset=True)
 # Get the absolute path of the current directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Define the absolute path to the .env file
-env_path = os.path.join(script_dir, '.env')
+# # Define the absolute path to the .env file
+# env_path = os.path.join(script_dir, '.env')
 
-# Load the .env file from the absolute path
-load_dotenv(dotenv_path=env_path)
+# # Load the .env file from the absolute path
+# load_dotenv(dotenv_path=env_path)
+
+# Get the absolute path to the .env file
+env_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '.env'))
+
+# Load environment variables from the .env file
+load_dotenv(env_file_path)
 
 # Set absolute paths for buy_prices.json and sell scripts
 buy_prices_file = os.path.join(script_dir, 'wallets', 'buy_prices.json')
 sell_token_50_path = os.path.join(script_dir, 'sell_token_50.py')
 sell_token_80_path = os.path.join(script_dir, 'sell_token_80.py')
 sell_token_90_path = os.path.join(script_dir, 'sell_token_90.py')
+sell_token_100_path = os.path.join(script_dir, 'sell_token_100.py')
+sell_token_500_path = os.path.join(script_dir, 'sell_token_500.py')
 
 if not os.path.exists(buy_prices_file):
     print(Fore.RED + "Error: buy_prices.json file not found")
