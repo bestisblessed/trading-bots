@@ -164,7 +164,8 @@ fs.readdir('./rug-detections/', (err, files) => {
 });
 
 // Example usage
+rugDetector('FsuuJacQ1K5G7xfQf7dfhEKqtEK5enZKWXtpRuXfA5LC');
 // rugDetector('Ag19bdRfrDU4WprGrbN8pJaEP3YbLvbuC9gsnaoJgFKz');
 // rugDetector('HidqA4SP1owM2FXGBuypJZxqr8VgoGkcXVZvEr6FZFgy');
-rugDetector('FEN72JRg6uxbE4sXVJa4kJCWgvEBA5yqeQ1iCu1Npump');
+// rugDetector('BoFPxed7C7KRrpSovxTwjxE8HeiiyH9qY3kJGpnVRUaL');
 
