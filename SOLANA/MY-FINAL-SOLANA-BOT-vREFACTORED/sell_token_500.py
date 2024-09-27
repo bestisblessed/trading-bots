@@ -194,8 +194,8 @@ if balance is None or decimals is None:
 print(f"Token Symbol: {symbol}")
 
 # Calculate the sell amount
-sell_amount = float(balance) * 0.5
-print(f"Selling 50% of {symbol}: {sell_amount}")
+sell_amount = float(balance) * 0.6
+print(f"Selling 60% of {symbol}: {sell_amount}")
 
 # Convert to raw token amount
 sell_amount_raw = int(sell_amount * 10**decimals)
@@ -207,7 +207,7 @@ params = {
     'inputMint': mint_address,
     'outputMint': 'So11111111111111111111111111111111111111112',  # Converting to SOL
     'amount': sell_amount_raw,  # Sell 80% of tokens
-    'slippageBps': '1000'  # 1% slippage
+    'slippageBps': '500'  # 1% slippage
 }
 
 time.sleep(2)

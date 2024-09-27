@@ -115,7 +115,7 @@ mint_address = sys.argv[1]
 
 # Run the function with the given mint address
 print("Using token address: ", mint_address)
-time.sleep(10)
+time.sleep(5)
 # get_solana_token_data(mint_address)
 liquidity_found = get_solana_token_data(mint_address)
 
@@ -196,7 +196,7 @@ if os.path.exists(rankings_file_path):
 #        rugcheck_score = token_info.get('rugcheckxyz_1', 0)  # Default to 0 if not found
 
     # If rank is 3, 4, or 5, execute the buy_token.py script
-    if rank in [3, 4, 5] and rugcheck_score < 10000:
+    if rank in [3, 4, 5] and rugcheck_score < 5000:
     # if rank in [3, 4, 5]:
         print(f"Token with mint address {mint_address} has a good rank: {rank}. Proceeding to buy.")
         try:
