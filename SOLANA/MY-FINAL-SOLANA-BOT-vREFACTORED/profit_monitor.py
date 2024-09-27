@@ -97,17 +97,17 @@ for token_address, token_info in buy_prices.items():
                 if not r.status_code == 200:
                     print(r.text)
 
-            elif profit_loss_percent >= 80 and not token_info.get('sell_80', False):
-                trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "80%")
-                buy_prices[token_address]['sell_80'] = True
-                token_info['sell_80'] = True
-                USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
-                API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-                message = f"SOLD 50% of {token_info['symbol']} TOKEN"
-                payload = {"message": message, "user": USER, "token": API}
-                r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
-                if not r.status_code == 200:
-                    print(r.text)
+            # elif profit_loss_percent >= 80 and not token_info.get('sell_80', False):
+            #     trigger_sell(token_address, 'sell_token_80.py', profit_loss_percent, "80%")
+            #     buy_prices[token_address]['sell_80'] = True
+            #     token_info['sell_80'] = True
+            #     USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
+            #     API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
+            #     message = f"SOLD 50% of {token_info['symbol']} TOKEN"
+            #     payload = {"message": message, "user": USER, "token": API}
+            #     r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
+            #     if not r.status_code == 200:
+            #         print(r.text)
 
             elif profit_loss_percent >= 50 and not token_info.get('sell_50', False):
                 trigger_sell(token_address, 'sell_token.py', profit_loss_percent, "50%")
