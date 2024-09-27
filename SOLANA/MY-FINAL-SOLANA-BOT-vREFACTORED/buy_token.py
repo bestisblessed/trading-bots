@@ -66,6 +66,6 @@ print('')
 print(Fore.GREEN + '-'*40 + 'BOUGHT TOKEN' + '-'*40)
 # print(Fore.GREEN + json.dumps(result_raw_output).upper())
 print(Fore.GREEN + 'TRANSACTION ID: ' + transaction_id)
-print('')
-print(Fore.YELLOW + 'Raw Output: ' + result_raw_output)
+# print('')
+# print(Fore.YELLOW + 'Raw Output: ' + result_raw_output)
 
