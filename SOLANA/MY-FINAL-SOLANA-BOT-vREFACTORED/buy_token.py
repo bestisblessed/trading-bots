@@ -37,7 +37,7 @@ url = 'https://quote-api.jup.ag/v6/quote'
 params = {
     'inputMint': 'So11111111111111111111111111111111111111112',
     'outputMint': output_mint,
-    'amount': str(int(0.002 * 10**9)), # Number of SOL to swap
+    'amount': str(int(0.003 * 10**9)), # Number of SOL to swap
     'slippageBps': '500'  # 5% slippage
 }
 response = requests.get(url, params=params)
@@ -57,9 +57,9 @@ signature = sender.sign_message(message.to_bytes_versioned(raw_transaction.messa
 signed_txn = VersionedTransaction.populate(raw_transaction.message, [signature])
 opts = TxOpts(skip_preflight=False, preflight_commitment=Processed)
 result = client.send_raw_transaction(txn=bytes(signed_txn), opts=opts)
-# result_raw_output = json.loads(result.to_json())
+result_raw_output = json.loads(result.to_json())
 transaction_id = json.loads(result.to_json())['result']
-# print(result_raw_output)
+print(result_raw_output)
 # print('Transaction ID: ', transaction_id)
 # Print in green, capital letters
 print('')
@@ -67,3 +67,5 @@ print(Fore.GREEN + '-'*40 + 'BOUGHT TOKEN' + '-'*40)
 # print(Fore.GREEN + json.dumps(result_raw_output).upper())
 print(Fore.GREEN + 'TRANSACTION ID: ' + transaction_id)
 print('')
+print(Fore.YELLOW + 'Raw Output: ' + result_raw_output)
+
