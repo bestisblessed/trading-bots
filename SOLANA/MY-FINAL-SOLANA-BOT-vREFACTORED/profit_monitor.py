@@ -102,7 +102,7 @@ for token_address, token_info in buy_prices.items():
                 token_info['sell_500'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-                message = f"SOLD {token_info['symbol']} 500% Profit - 60% Tokens"
+                message = f"SOLD {token_info['symbol']} 500% Profit - 50% Tokens"
                 payload = {"message": message, "user": USER, "token": API}
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
                 if not r.status_code == 200:
@@ -139,7 +139,7 @@ for token_address, token_info in buy_prices.items():
                 token_info['sell_100'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-                message = f"SOLD {token_info['symbol']} 100% Profit - 50% of tokens"
+                message = f"SOLD {token_info['symbol']} 100% Profit - 33% of tokens"
                 payload = {"message": message, "user": USER, "token": API}
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
                 if not r.status_code == 200:
@@ -152,7 +152,7 @@ for token_address, token_info in buy_prices.items():
                 token_info['sell_50'] = True
                 USER = 'ucdzy7t32br76dwht5qtz5mt7fg7n3'
                 API = 'a78cw5vdac5t34g4y1f7zz1gmoxp89'
-                message = f"SOLD {token_info['symbol']} 50% Profit - 50% of tokens"
+                message = f"SOLD {token_info['symbol']} 50% Profit - 33% of tokens"
                 payload = {"message": message, "user": USER, "token": API}
                 r = requests.post('https://api.pushover.net/1/messages.json', data=payload, headers={'User-Agent': 'Python'})
                 if not r.status_code == 200:

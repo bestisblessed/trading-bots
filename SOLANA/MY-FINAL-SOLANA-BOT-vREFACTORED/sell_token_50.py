@@ -194,7 +194,7 @@ if balance is None or decimals is None:
 print(f"Token Symbol: {symbol}")
 
 # Calculate the sell amount
-sell_amount = float(balance) * 0.5
+sell_amount = float(balance) * 0.33
 print(f"Selling 50% of {symbol}: {sell_amount}")
 
 # Convert to raw token amount
