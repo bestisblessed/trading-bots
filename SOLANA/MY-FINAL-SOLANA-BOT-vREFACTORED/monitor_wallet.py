@@ -58,6 +58,9 @@ if not os.path.exists(data_dir):
 output_path = os.path.abspath(os.path.join(data_dir, f'{wallet_address}_token_balances.json'))
 buy_prices_path = os.path.abspath(os.path.join(data_dir, 'buy_prices.json'))
 
+# Filter tokens with liquidity greater than 1 for both USD and Quote token liquidity
+filtered_tokens = []
+
 # Save the current token balances to a JSON file
 with open(output_path, 'w') as f:
     json.dump(tokens, f, indent=2)
@@ -106,35 +109,46 @@ for token in tokens:
             usd_liquidity = pair.get('liquidity', {}).get('usd', 'USD liquidity not available')
             price_usd = pair.get('priceUsd', 'Price not available')  # Get token price in USD
 
-            # Check if the token is already in buy_prices.json
-            if token_address not in buy_prices:
-                # Save token details to the buy_prices.json file
-                buy_prices[token_address] = {
-                    "name": solana_token_name,
-                    "symbol": solana_token_symbol,
-                    "price_usd": price_usd,
-                    "liquidity_usd": usd_liquidity,
-                    "timestamp": timestamp
-                }
-                print(Fore.BLACK + f"  Added token details for {solana_token_name} ({solana_token_symbol}) to buy_prices.json")
+            # Filter based on liquidity greater than 1
+            if float(usd_liquidity) >= 1 and float(quote_token_liquidity) >= 1:
+                filtered_tokens.append(token)  # Add to filtered list
 
-                # Save the buy prices back to the buy_prices.json file
-                with open(buy_prices_path, 'w') as f:
-                    json.dump(buy_prices, f, indent=2)
+                # Check if the token is already in buy_prices.json
+                if token_address not in buy_prices:
+                    # Save token details to the buy_prices.json file
+                    buy_prices[token_address] = {
+                        "name": solana_token_name,
+                        "symbol": solana_token_symbol,
+                        "price_usd": price_usd,
+                        "liquidity_usd": usd_liquidity,
+                        "timestamp": timestamp
+                    }
+                    print(Fore.BLACK + f"  Added token details for {solana_token_name} ({solana_token_symbol}) to buy_prices.json")
 
-            # Print liquidity and price details
-            print(Fore.YELLOW + f"  {solana_token_name} ({solana_token_symbol}) / {quote_token_name} ({quote_token_symbol})")
-            print(Fore.GREEN + f"  Price (USD): {price_usd}")
-            print(Fore.GREEN + f"  Timestamp: {timestamp}")
-            print(Fore.GREEN + f"  Liquidity (Solana Token): {solana_token_liquidity}")
-            print(Fore.GREEN + f"  Liquidity (Quote Token): {quote_token_liquidity}")
-            print(Fore.GREEN + f"  Liquidity (USD): {usd_liquidity}")
+                    # Save the buy prices back to the buy_prices.json file
+                    with open(buy_prices_path, 'w') as f:
+                        json.dump(buy_prices, f, indent=2)
+
+                # Print liquidity and price details
+                print(Fore.YELLOW + f"  {solana_token_name} ({solana_token_symbol}) / {quote_token_name} ({quote_token_symbol})")
+                print(Fore.GREEN + f"  Price (USD): {price_usd}")
+                print(Fore.GREEN + f"  Timestamp: {timestamp}")
+                print(Fore.GREEN + f"  Liquidity (Solana Token): {solana_token_liquidity}")
+                print(Fore.GREEN + f"  Liquidity (Quote Token): {quote_token_liquidity}")
+                print(Fore.GREEN + f"  Liquidity (USD): {usd_liquidity}")
+            else:
+                print(Fore.YELLOW + f"Skipping {solana_token_name} ({solana_token_symbol}) due to low liquidity.")
         else:
             print(Fore.WHITE + '-' * 50)
             print(Fore.RED + f"No liquidity pairs found for: {token_address}")
 
     except requests.exceptions.RequestException as e:
         print(Fore.RED + f"Error fetching liquidity data for Solana token address: {token_address}: {e}")
+
+# Save the filtered tokens to a JSON file
+with open(output_path, 'w') as f:
+    json.dump(filtered_tokens, f, indent=2)
+print(f'Filtered token balances saved to {output_path}')
 
 # Done processing tokens
 print(f"Finished processing all tokens in {wallet_address}'s portfolio.")
