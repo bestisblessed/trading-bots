@@ -113,7 +113,8 @@ if response.status_code == 200:
     print(json.dumps(rug_check_data, indent=4))  # Pretty-print the JSON response
 
     # Get the final score from the rug check data
-    final_score = rug_check_data.get('score', 0)
+    # final_score = rug_check_data.get('score', 0)
+    final_score = 0
     print(f"Final Score: {final_score}")
 
     # Add or update the 'rugcheck_1' field in the ranking data
