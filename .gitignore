@@ -3,3 +3,9 @@ config.ts
 node_modules/*
 */node_modules/*
 *tsconfig.json*
+new_tokens*
+logs/
+*/logs/
+.DS_store*
+.vscode*
+node_modules*

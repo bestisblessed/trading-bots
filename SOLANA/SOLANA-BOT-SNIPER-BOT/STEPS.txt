@@ -1,0 +1,6 @@
+
+1. Use SOL Scanner Script -> buy new tokens & log original buy price in wallet_balances.json
+2. Check current prices of coins in wallet with inspect_wallet.py -> inspect_token_details.js
+    1. If price of token 100% greater than buy price sell 50%
+    2. If +500% sell 25%
+    3. If 10000% sell 15%

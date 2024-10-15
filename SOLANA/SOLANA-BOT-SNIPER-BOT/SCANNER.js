@@ -162,6 +162,19 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
             }
             console.log(`Swap stdout: ${stdout}`);
         });
+        // Call the next python script to log buy price and token details
+        const checkWalletCommand = `python check_wallet_and_log_buy_prices.py`;
+        exec(checkWalletCommand, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error executing swap: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Swap stderr: ${stderr}`);
+                return;
+            }
+            console.log(`Swap stdout: ${stdout}`);
+        });
 
     } catch (error) {
         if (error.response && error.response.status === 429 && retryCount < maxRetries) {
@@ -179,3 +192,24 @@ async function fetchRaydiumAccounts(txId, connection, retryCount = 0) {
 
 // Start monitoring logs
 main(connection, raydium).catch(console.error);
+
+// Run the Python price checker every 5 seconds
+function runPythonPriceChecker() {
+    setInterval(() => {
+        const priceCheckerCommand = `python check_wallet_and_sell.py`;
+        exec(priceCheckerCommand, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error executing check_wallet_and_sell.py: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`check_wallet_and_sell.py stderr: ${stderr}`);
+                return;
+            }
+            console.log(`check_wallet_and_sell.py stdout: ${stdout}`);
+        });
+    }, 10000);  // Run every 5 seconds
+}
+
+// Start the Python price checker
+runPythonPriceChecker();

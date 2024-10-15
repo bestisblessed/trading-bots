@@ -1,0 +1,47 @@
+[
+  {
+    "associatedTokenAddress": "5Tptoe18RSu32vFXYSxxLKExKhVtb182ecLV5JZaSiKF",
+    "mint": "7nWspu6U3xW3y4uc9ffVi8PtKt4jvfHpCo8tRqsDpump",
+    "amountRaw": "27341102361",
+    "amount": "27341.102361",
+    "decimals": "6",
+    "name": "Sirius The Dog Star",
+    "symbol": "Sirius"
+  },
+  {
+    "associatedTokenAddress": "6cUf1Pbm6fYMB6eomi6TfooiLp4uGmUdhXbBgVcAjcpZ",
+    "mint": "5YzQjNqUfQ87m38xejJsUy35b8DsihYvN2ajinMjfmfh",
+    "amountRaw": "46316084883292",
+    "amount": "46316084.883292",
+    "decimals": "6",
+    "name": "Puffy",
+    "symbol": "PUFFY"
+  },
+  {
+    "associatedTokenAddress": "54VoRwiZGMtqMRGQ1rwHX8rGRQFGveoVRcXf9yJKQXqJ",
+    "mint": "4VrYoRjkGXvHxbdKNBKYFyNNhKxrmukZh2Jsubfmpump",
+    "amountRaw": "4133525382",
+    "amount": "4133.525382",
+    "decimals": "6",
+    "name": "Aitrolls",
+    "symbol": "Aitrolls"
+  },
+  {
+    "associatedTokenAddress": "9iQJFTZTRU1TN1wz1pJahtMHohKwxwkFgSMMo5rRUaHT",
+    "mint": "DjdnBtLiktxpcnfMatnjbuCvZbuTb2A2qZoLLNu5KvQm",
+    "amountRaw": "31057807410078",
+    "amount": "31057.807410078",
+    "decimals": "9",
+    "name": "SOLA AOI\ud83d\udc59",
+    "symbol": "SOLA AOI"
+  },
+  {
+    "associatedTokenAddress": "s71RdGPcpLE8Azcbj5qjsF1hM4qNatDAMZL6RLq3dkj",
+    "mint": "GR4SFnwXT4BxXRVvV7ySuWUnonuyKEokrQGHLTZFJe5F",
+    "amountRaw": "9391214745349",
+    "amount": "9391.214745349",
+    "decimals": "9",
+    "name": "\ud83e\udd29Soly The Mascot",
+    "symbol": "\ud83e\udd29SOLY"
+  }
+]
