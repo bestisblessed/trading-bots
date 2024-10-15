@@ -1,0 +1,119 @@
+[
+  {
+    "index": 61,
+    "mint": "AC2rXHST3J15pQjC9egQM1NG9nAJFdJs5UY7juKnpump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "38518000000",
+    "decimals": 6,
+    "uiAmountString": "38518"
+  },
+  {
+    "index": 113,
+    "mint": "C1YhxP4gnnGnbGAe3VhxdQV4LGqmsXxFFb2HHL3tpump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "50421000000",
+    "decimals": 6,
+    "uiAmountString": "50421"
+  },
+  {
+    "index": 144,
+    "mint": "DuhSwRVN7z8bWjYzwtRv2uDfpAsbTPxDnDezzi9Nsf1y",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "1600000000",
+    "decimals": 6,
+    "uiAmountString": "1600"
+  },
+  {
+    "index": 151,
+    "mint": "UWp9ywERPuAFVQLNFt1tbfHCbaho8nuUKLzi8jupump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "62687000000",
+    "decimals": 6,
+    "uiAmountString": "62687"
+  },
+  {
+    "index": 169,
+    "mint": "NJbXipySpPwnsE72kiBJ6X8S5Whyk4mWyMrbJg9PqkQ",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "131369011488",
+    "decimals": 6,
+    "uiAmountString": "131369.011488"
+  },
+  {
+    "index": 170,
+    "mint": "3M2vepByfZTG6xUSmFidvSCFzHWFoVw7cPvyRDnUpump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "2000000000",
+    "decimals": 6,
+    "uiAmountString": "2000"
+  },
+  {
+    "index": 179,
+    "mint": "2mnGSkXH1h6x5qmhwoQzAZDKa83vnRf8wNkNWVbdv7w5",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "100000",
+    "decimals": 2,
+    "uiAmountString": "1000"
+  },
+  {
+    "index": 186,
+    "mint": "M49wideShuYwmnBMi3xXBoGnfg2TpTYAWyLt9QApump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "13478000000",
+    "decimals": 6,
+    "uiAmountString": "13478"
+  },
+  {
+    "index": 191,
+    "mint": "5vm2Q2H7jXGGZNUMeSFcZHK6xDBPiqAUGicPnrLgpump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "22975000000",
+    "decimals": 6,
+    "uiAmountString": "22975"
+  },
+  {
+    "index": 244,
+    "mint": "Ft379JgZeZiUpdgeZ2at1vrua6BRZ4zSxAzJA97pump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "18630000000",
+    "decimals": 6,
+    "uiAmountString": "18630"
+  },
+  {
+    "index": 270,
+    "mint": "3Z9o7qc5Cq5B9LWecxvgLoJTtrpCmv3fhbZArbnxwVTh",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "14713000000",
+    "decimals": 6,
+    "uiAmountString": "14713"
+  },
+  {
+    "index": 290,
+    "mint": "5xmnJLPMAgHSpLDR5GMuBWokw7yNdBCHBsV8ooAxpump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "15917000000",
+    "decimals": 6,
+    "uiAmountString": "15917"
+  },
+  {
+    "index": 314,
+    "mint": "B4gtR5n7BEMeyWmJfPqamdMRvQ8y7xNWeebFg53Apump",
+    "owner": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "amount": "72631000000",
+    "decimals": 6,
+    "uiAmountString": "72631"
+  }
+]

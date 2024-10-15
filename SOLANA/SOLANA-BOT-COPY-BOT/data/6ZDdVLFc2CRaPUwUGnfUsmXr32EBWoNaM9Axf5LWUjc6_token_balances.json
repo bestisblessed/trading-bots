@@ -1,0 +1,20 @@
+[
+  {
+    "associatedTokenAddress": "4Z7TrVTZL8nBKTMoihErfXXMWc74fCms4Xe9ZUj9SfY8",
+    "mint": "4qkLHhLqrzeJCkC61XF82F4FieUzrqX6nzzEWG7rjPNC",
+    "amountRaw": "3695266339",
+    "amount": "3695.266339",
+    "decimals": "6",
+    "name": "Make America Wealthy Again",
+    "symbol": " MAWA"
+  },
+  {
+    "associatedTokenAddress": "4Lp4yH8c1AGG9unEnAiCXq3kUTda58rxRrNJVEfBLnTv",
+    "mint": "So11111111111111111111111111111111111111112",
+    "amountRaw": "2306157828",
+    "amount": "2.306157828",
+    "decimals": "9",
+    "name": "Wrapped SOL",
+    "symbol": "SOL"
+  }
+]
