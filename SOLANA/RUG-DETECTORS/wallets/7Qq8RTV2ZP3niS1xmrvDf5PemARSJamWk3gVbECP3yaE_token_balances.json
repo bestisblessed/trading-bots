@@ -1,0 +1,123 @@
+[
+  {
+    "associatedTokenAddress": "7N7ZpiTBtGHGoohKzphrttgQX1Ur6tqrTDQoiRtJNN3e",
+    "mint": "ezk3nwHdpohYwukZiMCWgwEqqsnfBM7WL1xdmZ9pump",
+    "amountRaw": "15676415283",
+    "amount": "15676.415283",
+    "decimals": "6",
+    "name": "BLEH GOAT",
+    "symbol": "BLEH",
+    "rugcheckxyz_1": 300
+  },
+  {
+    "associatedTokenAddress": "4doUcBZ5cmw4EWtiFydgNrZpkipeP5CYVhVCZLxdHb5C",
+    "mint": "44F7cB2rAHfsq9rUrXDx2GDvjecbZhFFLhPF6qm6E4Dj",
+    "amountRaw": "5424945261407",
+    "amount": "5424.945261407",
+    "decimals": "9",
+    "name": "First City on Mars",
+    "symbol": "Bar",
+    "rugcheckxyz_1": 25090
+  },
+  {
+    "associatedTokenAddress": "5E7cEbHG6hmhNdZQsyodAyGjta3dojRhgUCNQofa6rwC",
+    "mint": "7retgV8bwQtN6TL8GqJVGuuJ1EwLYBYYkR6cFzpc5pa5",
+    "amountRaw": "1",
+    "amount": "0.000000001",
+    "decimals": "9",
+    "name": "Cristiano Ronaldo",
+    "symbol": "RONALDO"
+  },
+  {
+    "associatedTokenAddress": "E15dm7gdQXP7bQqbriYw2u1656J1ABizpPMgaefDsuYi",
+    "mint": "Ax9aDQGKDTSGFxaHyefWAcu5AfG8cUAaxmshhzLtpump",
+    "amountRaw": "1286955",
+    "amount": "1.286955",
+    "decimals": "6",
+    "name": "MUU DENG",
+    "symbol": "MUU"
+  },
+  {
+    "associatedTokenAddress": "5xuU84ux4QujUio33g695TRHx2AKUNLgBr8QGfNSFTas",
+    "mint": "75b4VFXxsL2VcPKNTZTh9vtYA1Y5sRK6pyRV6W32pump",
+    "amountRaw": "312967223",
+    "amount": "312.967223",
+    "decimals": "6",
+    "name": "Baa Black Sheep",
+    "symbol": "baa",
+    "rugcheckxyz_1": 23991
+  },
+  {
+    "associatedTokenAddress": "CK95w1E4TREnUBoGdnpvFAbzzHehFkQvc6CKTAWUXKyM",
+    "mint": "CPCd7iEztRBCsJoyPhC2yArnx5EH8MqxbC4jXJCqpump",
+    "amountRaw": "1912676869",
+    "amount": "1912.676869",
+    "decimals": "6",
+    "name": "Chao Chor",
+    "symbol": "ChaoChor"
+  },
+  {
+    "associatedTokenAddress": "2aBMpFTqW4uCbVcMvK345gKEfwSq2n77bXCGbVSGrCx8",
+    "mint": "AzN2kJgSpkK5TXz9cg8MKWYgr27xaQ1N71oRGRj2pump",
+    "amountRaw": "20221232916",
+    "amount": "20221.232916",
+    "decimals": "6",
+    "name": "EZO The Flying Squirrel",
+    "symbol": "EZO"
+  },
+  {
+    "associatedTokenAddress": "Bvj468BxpCxLWWndYFRCDS4gih7xjL8zuHe7oxmjhz8w",
+    "mint": "9RxQeMi2MRjiFU2ZfPWirP8M242KMhoyW9SB1UvfVXhu",
+    "amountRaw": "5000000000",
+    "amount": "5000",
+    "decimals": "6",
+    "name": "it is nothing. ",
+    "symbol": "nope"
+  },
+  {
+    "associatedTokenAddress": "3cEPMHnkcy7YycN7gkbEUD68qaocX1LeN3C8BbeXwPTX",
+    "mint": "DC6mPAuLkDYGM93p7VKUsS48MsJgNWgNzqspVbkk4WKh",
+    "amountRaw": "208715950824050",
+    "amount": "208715.95082405",
+    "decimals": "9",
+    "name": "Crocky",
+    "symbol": "Crocky"
+  },
+  {
+    "associatedTokenAddress": "CmTSrjHuT8AMNBhEtq2tymkESN5F2fuY4mo3DmntJDJz",
+    "mint": "wWFJGS5TKGWNWrzhtB1hSyEW7du7YtdH56xsAVmpump",
+    "amountRaw": "333927009659",
+    "amount": "333.927009659",
+    "decimals": "9",
+    "name": "Baby Rhino Azizi",
+    "symbol": "AZIZI",
+    "rugcheckxyz_1": 11499
+  },
+  {
+    "associatedTokenAddress": "EqFmT8LwAcJs7Vp7REWm9SNNKa2M1PaTeafmEXAS1nCb",
+    "mint": "3cTSVhp4uRcwz59Cf8DuJeoPgjrwa8yqxY3564K1Qtr8",
+    "amountRaw": "2498790",
+    "amount": "2.49879",
+    "decimals": "6",
+    "name": "Pesto the Baby King Penguin",
+    "symbol": "PESTO"
+  },
+  {
+    "associatedTokenAddress": "9Fum7Twq7Q7h1oZaaoysF4zFiRK7rFgWCay1UykNYLCJ",
+    "mint": "CFnREV96uczzbDGqvd8Fhhp9SPSkamy7Xwwk96xHZWjc",
+    "amountRaw": "8678147",
+    "amount": "8.678147",
+    "decimals": "6",
+    "name": "Mcoin",
+    "symbol": "MCOIN"
+  },
+  {
+    "associatedTokenAddress": "AWmRLMcbJSwS91MfJEwRroT5ws7gQt7Ysyn5w9kQ8qQY",
+    "mint": "81d1o6BfZeaF7GjqkKW3zk3fAUae6UZtT4Q4RGNDpump",
+    "amountRaw": "5406984616",
+    "amount": "5406.984616",
+    "decimals": "6",
+    "name": "Solana The Rhino",
+    "symbol": "SOLANA"
+  }
+]

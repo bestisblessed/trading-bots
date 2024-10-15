@@ -1,0 +1,209 @@
+[
+  {
+    "associatedTokenAddress": "Bvj468BxpCxLWWndYFRCDS4gih7xjL8zuHe7oxmjhz8w",
+    "mint": "9RxQeMi2MRjiFU2ZfPWirP8M242KMhoyW9SB1UvfVXhu",
+    "amountRaw": "9425687648",
+    "amount": "9425.687648",
+    "decimals": "6",
+    "name": "it is nothing. ",
+    "symbol": "nope"
+  },
+  {
+    "associatedTokenAddress": "6vgxZkvawnyoSwcCDooHvFeDmZP6uGRm53ZyU9LJ2Yr8",
+    "mint": "CCLFabhWgzg98PGuRvB8AFR2YfaktQrep58yMreypump",
+    "amountRaw": "4348575002",
+    "amount": "4348.575002",
+    "decimals": "6",
+    "name": "mould",
+    "symbol": "MOULD"
+  },
+  {
+    "associatedTokenAddress": "4doUcBZ5cmw4EWtiFydgNrZpkipeP5CYVhVCZLxdHb5C",
+    "mint": "44F7cB2rAHfsq9rUrXDx2GDvjecbZhFFLhPF6qm6E4Dj",
+    "amountRaw": "5424945261407",
+    "amount": "5424.945261407",
+    "decimals": "9",
+    "name": "First City on Mars",
+    "symbol": "Bar"
+  },
+  {
+    "associatedTokenAddress": "2aBMpFTqW4uCbVcMvK345gKEfwSq2n77bXCGbVSGrCx8",
+    "mint": "AzN2kJgSpkK5TXz9cg8MKWYgr27xaQ1N71oRGRj2pump",
+    "amountRaw": "20221232916",
+    "amount": "20221.232916",
+    "decimals": "6",
+    "name": "EZO The Flying Squirrel",
+    "symbol": "EZO"
+  },
+  {
+    "associatedTokenAddress": "3cEPMHnkcy7YycN7gkbEUD68qaocX1LeN3C8BbeXwPTX",
+    "mint": "DC6mPAuLkDYGM93p7VKUsS48MsJgNWgNzqspVbkk4WKh",
+    "amountRaw": "208715950824050",
+    "amount": "208715.95082405",
+    "decimals": "9",
+    "name": "Crocky",
+    "symbol": "Crocky"
+  },
+  {
+    "associatedTokenAddress": "CK95w1E4TREnUBoGdnpvFAbzzHehFkQvc6CKTAWUXKyM",
+    "mint": "CPCd7iEztRBCsJoyPhC2yArnx5EH8MqxbC4jXJCqpump",
+    "amountRaw": "1912676869",
+    "amount": "1912.676869",
+    "decimals": "6",
+    "name": "Chao Chor",
+    "symbol": "ChaoChor"
+  },
+  {
+    "associatedTokenAddress": "GEv34XFCRx1JjWBxLydtSECczhMzBzw17BwPXT14gHyK",
+    "mint": "EE1JYjpo1croL7awdhu1PGys4WthumnWX5WT6uTDpump",
+    "amountRaw": "118596507",
+    "amount": "118.596507",
+    "decimals": "6",
+    "name": "Kaziwa",
+    "symbol": "Kaziwa"
+  },
+  {
+    "associatedTokenAddress": "2XTT5WXnoGpyK1zkmkgAwerroKS2fi9sedqS4CAekyVt",
+    "mint": "2n6Yx3NJWSPAVwkEY3Ns8EgFHUZH6MNtKdwVgGvnEdkm",
+    "amountRaw": "7463667038612",
+    "amount": "7463.667038612",
+    "decimals": "9",
+    "name": "NO 1 Grand Theft Auto",
+    "symbol": "GTA1"
+  },
+  {
+    "associatedTokenAddress": "GamVdpJLDLNGGqzWC7W4j65km8vkR2v3ZuxNB6GYaWSG",
+    "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+    "amountRaw": "47026",
+    "amount": "0.047026",
+    "decimals": "6",
+    "name": "dogwifhat",
+    "symbol": "$WIF"
+  },
+  {
+    "associatedTokenAddress": "EqFmT8LwAcJs7Vp7REWm9SNNKa2M1PaTeafmEXAS1nCb",
+    "mint": "3cTSVhp4uRcwz59Cf8DuJeoPgjrwa8yqxY3564K1Qtr8",
+    "amountRaw": "2498790",
+    "amount": "2.49879",
+    "decimals": "6",
+    "name": "Pesto the Baby King Penguin",
+    "symbol": "PESTO"
+  },
+  {
+    "associatedTokenAddress": "9CN2iMAwDJdpuWzvUWaKCffrTq2RXPhrepEsRrXrCQ72",
+    "mint": "G9athvtptL6DXLhJ4VwGJBdZUFZ9t7sgRwMW2iv5pump",
+    "amountRaw": "131597359",
+    "amount": "131.597359",
+    "decimals": "6",
+    "name": "WOOFIES",
+    "symbol": "WOOFIES"
+  },
+  {
+    "associatedTokenAddress": "3AmZjLBN2dCfFRSCinvdHuZCciN7QpXkB6N63VCp4M2u",
+    "mint": "6eyxQYNxcmzKFYzoP7eNAqxmabAwyPyo3NjML97gJHAy",
+    "amountRaw": "10242707844842",
+    "amount": "10242.707844842",
+    "decimals": "9",
+    "name": "NVIDIA",
+    "symbol": "NVIDIA"
+  },
+  {
+    "associatedTokenAddress": "9Fum7Twq7Q7h1oZaaoysF4zFiRK7rFgWCay1UykNYLCJ",
+    "mint": "CFnREV96uczzbDGqvd8Fhhp9SPSkamy7Xwwk96xHZWjc",
+    "amountRaw": "8678147",
+    "amount": "8.678147",
+    "decimals": "6",
+    "name": "Mcoin",
+    "symbol": "MCOIN"
+  },
+  {
+    "associatedTokenAddress": "E15dm7gdQXP7bQqbriYw2u1656J1ABizpPMgaefDsuYi",
+    "mint": "Ax9aDQGKDTSGFxaHyefWAcu5AfG8cUAaxmshhzLtpump",
+    "amountRaw": "1286955",
+    "amount": "1.286955",
+    "decimals": "6",
+    "name": "MUU DENG",
+    "symbol": "MUU"
+  },
+  {
+    "associatedTokenAddress": "2Y7GwTRGDzVGAnXwuX2DkK8yUNdGPfFVaMWF2haWMNX1",
+    "mint": "HRctWzuVxtDM8a9mzd91AJNYCYa2w5qrgnEvaJb1pump",
+    "amountRaw": "20806153",
+    "amount": "20.806153",
+    "decimals": "6",
+    "name": "RUBOTS($ RUBOTS)",
+    "symbol": "RUBOTS"
+  },
+  {
+    "associatedTokenAddress": "8KwBETs3wakV7SVbqnKoh5WhANTEEgsaJnkr9eVU7ydb",
+    "mint": "ESVRQ6phc55VCw7sWB6JgW3PeTB6N68kvwjfsMPcpump",
+    "amountRaw": "30406372",
+    "amount": "30.406372",
+    "decimals": "6",
+    "name": "No1 tiktok frog (Omochi)",
+    "symbol": "omochi"
+  },
+  {
+    "associatedTokenAddress": "5E7cEbHG6hmhNdZQsyodAyGjta3dojRhgUCNQofa6rwC",
+    "mint": "7retgV8bwQtN6TL8GqJVGuuJ1EwLYBYYkR6cFzpc5pa5",
+    "amountRaw": "1",
+    "amount": "0.000000001",
+    "decimals": "9",
+    "name": "Cristiano Ronaldo",
+    "symbol": "RONALDO"
+  },
+  {
+    "associatedTokenAddress": "7kbFiT8xs6BDw4ueGnEdNcnKGkrjCVvybiTXCDu3UNoQ",
+    "mint": "FnLaZCzTDVoooUXBV1QS5MXqGC5JRkeTsFpiGGyVhdKw",
+    "amountRaw": "86721846215",
+    "amount": "86.721846215",
+    "decimals": "9",
+    "name": "NVIDIA",
+    "symbol": "NVIDIA"
+  },
+  {
+    "associatedTokenAddress": "7N7ZpiTBtGHGoohKzphrttgQX1Ur6tqrTDQoiRtJNN3e",
+    "mint": "ezk3nwHdpohYwukZiMCWgwEqqsnfBM7WL1xdmZ9pump",
+    "amountRaw": "15676415283",
+    "amount": "15676.415283",
+    "decimals": "6",
+    "name": "BLEH GOAT",
+    "symbol": "BLEH"
+  },
+  {
+    "associatedTokenAddress": "5xuU84ux4QujUio33g695TRHx2AKUNLgBr8QGfNSFTas",
+    "mint": "75b4VFXxsL2VcPKNTZTh9vtYA1Y5sRK6pyRV6W32pump",
+    "amountRaw": "312967223",
+    "amount": "312.967223",
+    "decimals": "6",
+    "name": "Baa Black Sheep",
+    "symbol": "baa"
+  },
+  {
+    "associatedTokenAddress": "CmTSrjHuT8AMNBhEtq2tymkESN5F2fuY4mo3DmntJDJz",
+    "mint": "wWFJGS5TKGWNWrzhtB1hSyEW7du7YtdH56xsAVmpump",
+    "amountRaw": "333927009659",
+    "amount": "333.927009659",
+    "decimals": "9",
+    "name": "Baby Rhino Azizi",
+    "symbol": "AZIZI"
+  },
+  {
+    "associatedTokenAddress": "AWmRLMcbJSwS91MfJEwRroT5ws7gQt7Ysyn5w9kQ8qQY",
+    "mint": "81d1o6BfZeaF7GjqkKW3zk3fAUae6UZtT4Q4RGNDpump",
+    "amountRaw": "5406984616",
+    "amount": "5406.984616",
+    "decimals": "6",
+    "name": "Solana The Rhino",
+    "symbol": "SOLANA"
+  },
+  {
+    "associatedTokenAddress": "5KhbvSdhopBcjVG1iRsuJwQ4kcwjHe5rQUXc4Cq7of6f",
+    "mint": "AaDVe74G8bp2t7SiBJCkHGM2qUEJg2Tp76yzcmnwxqB6",
+    "amountRaw": "482365339",
+    "amount": "482.365339",
+    "decimals": "6",
+    "name": "Rock Head",
+    "symbol": "ROAD"
+  }
+]

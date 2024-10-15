@@ -10,6 +10,7 @@ response = requests.get(url, headers={"accept": "application/json"})
 # Check for successful response
 if response.status_code == 200:
     result = response.json()
-    print(result)
+    # print(result)
+    print(json.dumps(result, indent=4))  # Pretty-print the JSON response
 else:
     print(f"Error: {response.status_code}")

@@ -3,7 +3,6 @@ import { NATIVE_MINT } from '@solana/spl-token'
 import axios from 'axios'
 import { connection, owner, fetchTokenAccountData, initSdk } from './config';
 import { API_URLS } from '@raydium-io/raydium-sdk-v2'
-// require('dotenv').config();
 
 interface SwapCompute {
   id: string
@@ -33,9 +32,9 @@ interface SwapCompute {
 
 export const apiSwap = async () => {
   const inputMint = NATIVE_MINT.toBase58()
-  const outputMint = '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R' // RAY
-  const amount = 20_000_000; // This will swap 0.02 SOL
-  const slippage = 1.0 // in percent, for this example, 0.5 means 0.5%
+  const outputMint = 'B4gtR5n7BEMeyWmJfPqamdMRvQ8y7xNWeebFg53Apump' // NILLY
+  const amount = 5_000_000; // This will swap 0.005 SOL
+  const slippage = 0.5 // in percent, for this example, 0.5 means 0.5%
   const txVersion: string = 'V0' // or LEGACY
   const isV0Tx = txVersion === 'V0'
 

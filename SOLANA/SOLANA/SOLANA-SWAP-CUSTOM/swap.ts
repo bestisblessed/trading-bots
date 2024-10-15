@@ -1,8 +1,22 @@
-import { Transaction, VersionedTransaction, sendAndConfirmTransaction } from '@solana/web3.js'
-import { NATIVE_MINT } from '@solana/spl-token'
-import axios from 'axios'
+import { Transaction, VersionedTransaction, sendAndConfirmTransaction } from '@solana/web3.js';
+import { NATIVE_MINT } from '@solana/spl-token';
+import axios from 'axios';
 import { connection, owner, fetchTokenAccountData, initSdk } from './config';
-import { API_URLS } from '@raydium-io/raydium-sdk-v2'
+import { API_URLS } from '@raydium-io/raydium-sdk-v2';
+
+// Get the outputMint and amount from command-line arguments
+const outputMint = process.argv[2];
+const solAmount = parseFloat(process.argv[3]);
+
+// Check if both arguments are provided, else throw an error
+if (!outputMint || isNaN(solAmount)) {
+  console.error('Error: outputMint and amount (in SOL) are required arguments.');
+  console.error('Usage: ts-node swap.ts <outputMint> <amount_in_SOL>');
+  process.exit(1);
+}
+
+// Convert SOL to lamports
+const amount = Math.round(solAmount * 1_000_000_000); // Convert SOL to lamports
 
 interface SwapCompute {
   id: string
@@ -31,11 +45,12 @@ interface SwapCompute {
 }
 
 export const apiSwap = async () => {
-  const inputMint = '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R' // RAY
-  const outputMint = NATIVE_MINT.toBase58() // SOL
-//   const amount = 1_500_000; // This will swap 1,500,000,000 lamports of RAY (equivalent to 1.5 RAY)
-  const amount = 400_000; // This will swap 1,500,000,000 lamports of RAY (equivalent to 1.5 RAY)
-  const slippage = 1.0 // in percent, for this example, 0.5 means 0.5%
+  const inputMint = NATIVE_MINT.toBase58()
+  // const outputMint = outputMint
+  // const amount = solAmount;
+  // const outputMint = 'B4gtR5n7BEMeyWmJfPqamdMRvQ8y7xNWeebFg53Apump' // NILLY
+  // const amount = 20_000_000; // This will swap 0.02 SOL
+  const slippage = 2.5 // in percent, for this example, 0.5 means 0.5%
   const txVersion: string = 'V0' // or LEGACY
   const isV0Tx = txVersion === 'V0'
 
@@ -51,6 +66,11 @@ export const apiSwap = async () => {
   }
 
   // get statistical transaction fee from api
+  /**
+   * vh: very high
+   * h: high
+   * m: medium
+   */
   const { data } = await axios.get<{
     id: string
     success: boolean
