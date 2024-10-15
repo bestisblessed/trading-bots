@@ -9,3 +9,5 @@ logs/
 .DS_store*
 .vscode*
 node_modules*
+.ipynb_checkpoints*
+bak/*

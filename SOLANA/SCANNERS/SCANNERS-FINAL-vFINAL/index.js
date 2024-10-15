@@ -8,7 +8,10 @@ const path = require('path');
 const SESSION_HASH = 'QNDEMO' + Math.ceil(Math.random() * 1e9); // Random unique identifier for your session
 let credits = 0;
 
+// const SOLANA_ENDPOINT = 'https://tiniest-burned-mansion.solana-mainnet.quiknode.pro/a5f42fa1b144c8f334deb792e7567894965b96b0'
+// const SOLANA_ENDPOINT = 'https://fabled-misty-putty.solana-mainnet.quiknode.pro/d6c562f9b1106b60e01c276a42c58a1c182298c4/';
 const SOLANA_ENDPOINT = 'https://api.mainnet-beta.solana.com/';
+
 const raydium = new PublicKey('675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
 const connection = new Connection(SOLANA_ENDPOINT, {
     wsEndpoint: SOLANA_ENDPOINT.replace('https://', 'wss://'),
@@ -67,16 +70,15 @@ async function fetchRaydiumAccounts(txId, connection) {
 
     const token_address = tokenAAddress.startsWith("So1") ? tokenBAddress : tokenAAddress;
 
-    // Check if the token has already been processed
+    // console.log(`Transaction URL: https://solscan.io/tx/${txId}`);
+    // console.log(`Token A Account Public Key: ${tokenAAddress}`);
+    // console.log(`Token B Account Public Key: ${tokenBAddress}`);
+    console.log(`Final Token Account Public Key: ${token_address}`);
+    // console.log(`Total QuickNode Credits Used in this session: ${credits}`);
+
+    // Create the new file name and path
     const newFileName = `${token_address}.json`;
     const newFilePath = path.join(directory, newFileName);
-
-    if (fs.existsSync(newFilePath)) {
-        console.log(`Token ${token_address} has already been processed. Skipping.`);
-        return;
-    }
-
-    console.log(`Final Token Account Public Key: ${token_address}`);
 
     // Prepare the data to be saved
     const dataToSave = {

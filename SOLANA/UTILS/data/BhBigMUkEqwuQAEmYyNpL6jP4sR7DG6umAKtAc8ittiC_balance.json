@@ -1,0 +1,90 @@
+{
+    "wallet_address": "BhBigMUkEqwuQAEmYyNpL6jP4sR7DG6umAKtAc8ittiC",
+    "sol_balance": "8.954444414",
+    "tokens": [
+        {
+            "name": "nono",
+            "symbol": "nono",
+            "amount": "15917",
+            "mint": "5xmnJLPMAgHSpLDR5GMuBWokw7yNdBCHBsV8ooAxpump"
+        },
+        {
+            "name": "KOLT",
+            "symbol": "KOLT",
+            "amount": "2000",
+            "mint": "3M2vepByfZTG6xUSmFidvSCFzHWFoVw7cPvyRDnUpump"
+        },
+        {
+            "name": "Smol Silly Cat",
+            "symbol": "smolcat",
+            "amount": "18630",
+            "mint": "Ft379JgZeZiUpdgeZ2at1vrua6BRZ4zSxAzJA97pump"
+        },
+        {
+            "name": "SEAN KINGSTON",
+            "symbol": "BOY",
+            "amount": "50421",
+            "mint": "C1YhxP4gnnGnbGAe3VhxdQV4LGqmsXxFFb2HHL3tpump"
+        },
+        {
+            "name": "YEAH",
+            "symbol": "YEAH",
+            "amount": "131369.011488",
+            "mint": "NJbXipySpPwnsE72kiBJ6X8S5Whyk4mWyMrbJg9PqkQ"
+        },
+        {
+            "name": "Strudels on Solana",
+            "symbol": "$SOS",
+            "amount": "1000",
+            "mint": "2mnGSkXH1h6x5qmhwoQzAZDKa83vnRf8wNkNWVbdv7w5"
+        },
+        {
+            "name": "Blasted Cat",
+            "symbol": "BCAT",
+            "amount": "14713",
+            "mint": "3Z9o7qc5Cq5B9LWecxvgLoJTtrpCmv3fhbZArbnxwVTh"
+        },
+        {
+            "name": "NILLY",
+            "symbol": "NILLY",
+            "amount": "72631",
+            "mint": "B4gtR5n7BEMeyWmJfPqamdMRvQ8y7xNWeebFg53Apump"
+        },
+        {
+            "name": "smol silly cat",
+            "symbol": "SILLY",
+            "amount": "62687",
+            "mint": "UWp9ywERPuAFVQLNFt1tbfHCbaho8nuUKLzi8jupump"
+        },
+        {
+            "name": "fire pussy",
+            "symbol": "fp",
+            "amount": "22975",
+            "mint": "5vm2Q2H7jXGGZNUMeSFcZHK6xDBPiqAUGicPnrLgpump"
+        },
+        {
+            "name": "discord cat",
+            "symbol": "dcat",
+            "amount": "4458",
+            "mint": "CVUo3fiJDxHXtfGtS4eND3WKRMr54Lwfw4cd2Pnipump"
+        },
+        {
+            "name": "Snapcat",
+            "symbol": "snapcat",
+            "amount": "13478",
+            "mint": "M49wideShuYwmnBMi3xXBoGnfg2TpTYAWyLt9QApump"
+        },
+        {
+            "name": "Polite Cat",
+            "symbol": "POCAT",
+            "amount": "1600",
+            "mint": "DuhSwRVN7z8bWjYzwtRv2uDfpAsbTPxDnDezzi9Nsf1y"
+        },
+        {
+            "name": "Attack cat",
+            "symbol": "ACAT",
+            "amount": "38518",
+            "mint": "AC2rXHST3J15pQjC9egQM1NG9nAJFdJs5UY7juKnpump"
+        }
+    ]
+}

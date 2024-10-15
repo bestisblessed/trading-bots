@@ -1,0 +1,29 @@
+[
+  {
+    "associatedTokenAddress": "3AmZjLBN2dCfFRSCinvdHuZCciN7QpXkB6N63VCp4M2u",
+    "mint": "6eyxQYNxcmzKFYzoP7eNAqxmabAwyPyo3NjML97gJHAy",
+    "amountRaw": "10242707844842",
+    "amount": "10242.707844842",
+    "decimals": "9",
+    "name": "NVIDIA",
+    "symbol": "NVIDIA"
+  },
+  {
+    "associatedTokenAddress": "5E7cEbHG6hmhNdZQsyodAyGjta3dojRhgUCNQofa6rwC",
+    "mint": "7retgV8bwQtN6TL8GqJVGuuJ1EwLYBYYkR6cFzpc5pa5",
+    "amountRaw": "1",
+    "amount": "0.000000001",
+    "decimals": "9",
+    "name": "Cristiano Ronaldo",
+    "symbol": "RONALDO"
+  },
+  {
+    "associatedTokenAddress": "pKFotzxsQniUcWsvrhro8vd6VDG7qWLo7qVaQ2Ez2X3",
+    "mint": "61rAVXh5ow4RAH8FVNfdJsTuEc8xvoWWvehvAuQDpump",
+    "amountRaw": "11014044230",
+    "amount": "11014.04423",
+    "decimals": "6",
+    "name": "Ozempic",
+    "symbol": "OZEMPIC"
+  }
+]

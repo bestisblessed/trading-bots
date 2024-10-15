@@ -1,0 +1,16 @@
+{
+  "name": "scanners",
+  "version": "1.0.0",
+  "main": "FINAL_SOL_SCANNER.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@solana/web3.js": "^1.95.3",
+    "dotenv": "^16.4.5"
+  }
+}
